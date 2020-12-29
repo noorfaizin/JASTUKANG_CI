@@ -1,0 +1,71 @@
+.title-home{
+    text-shadow: 0 0 30px white, 0 0 10px black;
+    font-size: 50px;
+}
+.logo-footer{
+    width: 80%;
+    display: block;
+}
+.logo-footer-responsive{
+    display: none;
+}
+.title-footer{
+    font-size: 18px;
+}
+.text-pils{
+    font-size: 16px;
+}
+.follow-us{
+    margin-top: 20px;
+    font-size: 20px;
+    font-weight: bold;
+}
+.group-sosmed{
+    text-align: center;
+}
+.sosmed-footer{
+    width: 5%;
+}
+.copyright{
+    margin-top: 5px;
+    color: black;
+}
+
+@media (max-width: 767px) {
+    .title-home{
+        font-size: 30px;
+        margin: auto;
+    }
+    .temukan-jasa{
+        width: 90%;
+    }
+    .kategori-terpopuler{
+        margin-top: 10px;
+    }
+    .logo-footer{
+        display: none;
+    }
+    .logo-footer-responsive{
+        width: 50%;
+        display: block;
+        margin: auto;
+    }
+    .title-footer{
+        margin-top: 10px;
+        font-size: 14px;
+        font-weight: bold;
+    }
+    .text-pils{
+        font-size: 12px;
+    }
+    .sosmed-footer{
+        width: 7%;
+    }
+}
+
+@media (max-width: 467px) {
+    .sosmed-footer{
+        width: 10%;
+    }
+
+}
