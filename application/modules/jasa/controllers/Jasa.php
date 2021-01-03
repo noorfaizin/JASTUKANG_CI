@@ -12,7 +12,11 @@ class Jasa extends CI_Controller {
 
         public function index() {
                 $data['judul'] = "Jasa Tukang";
+<<<<<<< HEAD
                 $data['kategori'] = $this->m_jasa->getKatJasa('jasa_kategori');
+=======
+                $data['kategori'] = $this->m_jasa->getAll('jasa_kategori');
+>>>>>>> 308f91a2e99a74f0e3f927ef2f693be41daf5f52
                 //die(var_dump($data['kategori']));
                 //$data['subKategori'] = $this->m_jasa->getAll('jasa_sub_kategori')->result();
                 $this->load->view('template_frontend/header', $data);

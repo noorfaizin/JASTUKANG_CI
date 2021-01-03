@@ -8,7 +8,11 @@ allowed');
   class M_jasa extends CI_Model
   {
 
+<<<<<<< HEAD
     public function getKatJasa($table)
+=======
+    public function getAll($table)
+>>>>>>> 308f91a2e99a74f0e3f927ef2f693be41daf5f52
     {
       // return $this->db->query('select kategori.nama_kategori as kategori,
       //                           json_objectagg(sub.id_sub_kategori_jasa,
