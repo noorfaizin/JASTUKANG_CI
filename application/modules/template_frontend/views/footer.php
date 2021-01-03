@@ -4,10 +4,10 @@
             <div class="col-md-3">
                 <a href="<?= base_url()?>">
                     <img class="logo-footer" src="<?php echo base_url('assets/images/logo-footer.png') ?>">
-                </a>    
+                </a>
                 <a href="<?= base_url()?>">
                     <img class="logo-footer-responsive" src="<?php echo base_url('assets/images/nav-logo.png') ?>">
-                </a>    
+                </a>
             </div>
             <div class="col-md-3">
                 <div class="text-dark title-footer">Album / Inspirasi</div>
@@ -30,7 +30,7 @@
             <div class="follow-us mx-auto text-dark">Follow Us</div>
             <div class="group-sosmed d-block">
                 <img class="sosmed-footer" src="<?php echo base_url('assets/images/sosmed/g+.png') ?>">
-                <img class="sosmed-footer" src="<?php echo base_url('assets/images/sosmed/FB.png') ?>">
+                <img class="sosmed-footer" src="<?php echo base_url('assets/images/sosmed/Fb.png') ?>">
                 <img class="sosmed-footer" src="<?php echo base_url('assets/images/sosmed/Instagram.png') ?>">
             </div>
         </div>

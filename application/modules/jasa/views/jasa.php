@@ -7,35 +7,40 @@
 
 <div class="row col-md-10 mx-auto mt-4 p-0">
     <!-- Jasa Renovasi -->
-    <div class="col-list-3 p-0" style="border-radius:15px">
-      <div id="myProduct" class="recent-car-list">
-        <div class="col-lg text-dark justify-content-center p-0">
-          <a href="<?= base_url('jasa/renovasi') ?>">
-            <div class="card m-0 shadow" style="border-radius:15px">
-              <div  class="card-header text-center m-0">
-                <img src="<?= base_url('assets/images/icon.png') ?>" class="card-img-top rounded" alt="image">
-              </div>
-                  
-              <div class="card-body p-0" style="margin-bottom:-10px;">
-                <div class="col-md-12 bg-dark p-2">
-                    <h5 class="text-white m-0">Jasa Renovasi</h5>
+    <?php foreach ($kategori as $row): ?>
+      <div class="col-list-3 p-0" style="border-radius:15px">
+        <div id="myProduct" class="recent-car-list">
+          <div class="col-lg text-dark justify-content-center p-0">
+            <a href="<?= base_url('jasa/renovasi') ?>">
+              <div class="card m-0 shadow" style="border-radius:15px">
+                <div  class="card-header text-center m-0">
+                  <img src="<?= base_url('assets/images/icon.png') ?>" class="card-img-top rounded" alt="image">
                 </div>
-                <div class="col-md-12 p-2">
-                  <ul class="text-dark">
-                    <li>Jasa Cat</li>
-                    <li>Jasa Listrik</li>
-                    <li>Jasa Atap</li>
-                    <li>Jasa Keramik</li>
-                  </ul>
+
+                <div class="card-body p-0" style="margin-bottom:-10px;">
+                  <div class="col-md-12 bg-dark p-2">
+                      <h5 class="text-white m-0"><?php echo $row['nama_kategori']; ?></h5>
+                  </div>
+                  <div class="col-md-12 p-2">
+                    <ul class="text-dark">
+                      <?php foreach ($row['jasa_sub_kategori'] as $sub): ?>
+                        <li><?php echo $sub['nama_sub_kategori_jasa'] ?> </li>
+                      <?php endforeach; ?>
+                      <!-- <li>Jasa Listrik</li>
+                      <li>Jasa Atap</li>
+                      <li>Jasa Keramik</li> -->
+                    </ul>
+                  </div>
                 </div>
               </div>
-            </div>
-          </a>
+            </a>
+          </div>
         </div>
       </div>
-    </div>
+    <?php endforeach; ?>
+
     <!-- jasa Instalasi -->
-    <div class="col-list-3 p-0" style="border-radius:15px">
+    <!-- <div class="col-list-3 p-0" style="border-radius:15px">
       <div id="myProduct" class="recent-car-list">
         <div class="col-lg text-dark justify-content-center p-0">
           <a href="<?= base_url('jasa/instalasi') ?>">
@@ -43,7 +48,7 @@
               <div  class="card-header text-center m-0">
                 <img src="<?= base_url('assets/images/icon.png') ?>" class="card-img-top rounded" alt="image">
               </div>
-                  
+
               <div class="card-body p-0" style="margin-bottom:-10px;">
                 <div class="col-md-12 bg-dark p-2">
                     <h5 class="text-white m-0">Jasa Instalasi</h5>
@@ -61,9 +66,9 @@
           </a>
         </div>
       </div>
-    </div>
+    </div> -->
     <!-- Jasa Pembangunan -->
-    <div class="col-list-3 p-0" style="border-radius:15px">
+    <!-- <div class="col-list-3 p-0" style="border-radius:15px">
       <div id="myProduct" class="recent-car-list">
         <div class="col-lg text-dark justify-content-center p-0">
           <a href="<?= base_url('jasa/pembangunan') ?>">
@@ -71,7 +76,7 @@
               <div  class="card-header text-center m-0">
                 <img src="<?= base_url('assets/images/icon.png') ?>" class="card-img-top rounded" alt="image">
               </div>
-                  
+
               <div class="card-body p-0" style="margin-bottom:-10px;">
                 <div class="col-md-12 bg-dark p-2">
                     <h5 class="text-white m-0">Jasa Pembangunan</h5>
@@ -90,7 +95,7 @@
         </div>
       </div>
     </div>
-</div>
+</div> -->
 
 <!-- DAFTAR JASA -->
 <div class="col-md-12 mx-auto  mt-5 mb-5 p-3">
@@ -250,4 +255,3 @@
     </div>
   </div>
 </div>
-
