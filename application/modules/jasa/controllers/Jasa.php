@@ -7,10 +7,14 @@ class Jasa extends CI_Controller {
         parent::__construct();
         $this->load->library(array('form_validation'));
         $this->load->helper(array('url','form'));
+        $this->load->model('m_jasa');
 	}
 
         public function index() {
                 $data['judul'] = "Jasa Tukang";
+                $data['kategori'] = $this->m_jasa->getAll('jasa_kategori');
+                //die(var_dump($data['kategori']));
+                //$data['subKategori'] = $this->m_jasa->getAll('jasa_sub_kategori')->result();
                 $this->load->view('template_frontend/header', $data);
                 $this->load->view('template_frontend/navbar', $data);
                 $this->load->view('jasa', $data);

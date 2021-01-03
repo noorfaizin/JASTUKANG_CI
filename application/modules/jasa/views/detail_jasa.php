@@ -31,7 +31,7 @@
             </div>
         </div>
     </div>
-    
+
     <div class="col-md-7">
         <h5 class="badge badge-warning mt-4">Kategori Jasa</h5>
         <h4 class="font-weight-bold text-dark">Title Jasa</h4>
@@ -40,7 +40,7 @@
             <input type="text" class="form-control" id="uraian-jasa" name="uraian-jasa" placeholder="/meter">
         </div>
         <div class="custom-file mb-3">
-            <input type="file" class="custom-file-input" id="validatedCustomFile" required>
+            <input type="file" multiple="multiple" name="image_name[]" class="custom-file-input" id="validatedCustomFile" required>
             <label class="custom-file-label" for="validatedCustomFile">Sematkan foto</label>
             <div class="invalid-feedback">Example invalid custom file feedback</div>
         </div>
@@ -72,11 +72,11 @@
             <textarea type="text" class="form-control" placeholder="Deskripsi alamat..." name="desc-alamat"></textarea>
         </div>
         <a href="#" class=" btn text-dark btn-md btn-warning shadow-sm mb-3">Lanjutkan</a>
-        
+
     </div>
 
 
-    
+
     <div class="col-md-12 mt-3 mb-3">
         <span class="font-weight-bold font-italic text-gray">"</span>
             <small class="font-italic text-gray">
