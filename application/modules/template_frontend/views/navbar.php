@@ -3,22 +3,22 @@
         <div class="row">
             <div class="col-12">
                 <nav class="navbar navbar-expand-md navbar-light">
-                
+
                     <a class="navbar-brand" href="<?= base_url()?>">
                         <img src="<?= base_url('assets/images/nav-logo.png') ?>" alt="">
-                    </a>	
-                    
+                    </a>
+
                     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                         <span class="navbar-toggler-icon"></span>
                     </button>
-                    
+
                     <div class="collapse navbar-collapse" id="navbarSupportedContent">
                         <ul class="navbar-nav ml-auto py-4 py-md-0">
                             <li class="nav-item pl-4 pl-md-0 ml-0 ml-md-4 active">
                                 <a class="nav-link" href="<?= base_url('') ?>">Home</a>
                             </li>
                             <li class="nav-item pl-4 pl-md-0 ml-0 ml-md-4">
-                                <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="<?= base_url('') ?>/jasa" role="button" aria-haspopup="true" aria-expanded="false">Jasa</a>
+                                <a class="nav-link dropdown-toggle"  href="<?= base_url() ?>jasa/daftarjasa" role="button" aria-haspopup="true" aria-expanded="false">Jasa</a>
                                 <div class="dropdown-menu">
                                     <a class="dropdown-item" href="<?= base_url('jasa/renovasi') ?>">Renovasi</a>
                                     <a class="dropdown-item" href="<?= base_url('jasa/instalasi') ?>">Instalasi</a>
@@ -66,10 +66,10 @@
                                     <i class="fas fa-user text-dark-50"></i> Masuk / Daftar</a>
                             </li>
                         </ul>
-                        
+
                     </div>
-                    
-                </nav>		
+
+                </nav>
             </div>
         </div>
     </div>

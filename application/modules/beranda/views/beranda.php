@@ -7,45 +7,34 @@
   <div class="col-md-6 mt-3 mx-auto bg-white rounded shadow temukan-jasa" style="padding:10px 20px">
     <div class="row" style="margin-bottom:-10px">
       <div class="col-md-4">
-      <!-- KATEGORI JASA -->
-        <div class="form-group">
-          <label class="text-dark" for="exampleFormControlSelect1">Kategori Jasa :</label>
-          <select class="form-control" id="exampleFormControlSelect1">
-            <option>- Kategori Jasa -</option>
-            <option>Instalasi & Renovasi</option>
-            <option>Menu 1</option>
-            <option>Menu 2</option>
-            <option>Menu 3</option>
-          </select>
-        </div>
+        <form class="form-group" action="<?php echo base_url(); ?>/jasa" method="post">
+          <!-- KATEGORI JASA -->
+            <div class="form-group">
+              <label class="text-dark" for="exampleFormControlSelect1">Kategori Jasa :</label>
+              <select class="form-control" id="kategori" name="kategori">
+                <option>- Kategori Jasa -</option>
+                <?php foreach ($kategori as $row): ?>
+                  <option value="<?php echo $row->id_kategori_jasa; ?>"><?php echo $row->nama_kategori ?></option>
+                <?php endforeach; ?>
+              </select>
+            </div>
 
-      </div>
-      <div class="col-md-5">
-      <!-- PILIH JASA -->
-        <div class="form-group">
-          <label class="text-dark" for="exampleFormControlSelect1">Pilih Jasa :</label>
-          <select class="form-control" id="exampleFormControlSelect1">
-            <option>- Pilih Jasa -</option>
-            <option>Cat</option>
-            <option>Listrik</option>
-            <option>Atap</option>
-            <option>Keramik</option>
-            <option>Gambar Arsitektur</option>
-            <option>Las</option>
-            <option>Kamar Mandi</option>
-            <option>Kamar</option>
-            <option>Wallpaper</option>
-            <option>Dapur</option>
-            <option>Plafon</option>
-            <option>Taman</option>
-          </select>
-        </div>
+          </div>
+          <div class="col-md-5">
+          <!-- PILIH JASA -->
+            <div class="form-group">
+              <label class="text-dark" for="exampleFormControlSelect1">Pilih Jasa :</label>
+              <select class="form-control" id="subKat" name="subKat">
+                <option>- Pilih Jasa -</option>
+              </select>
+            </div>
 
-      </div>
-      <div class="col-md-3 mb-3">
-        <a href="<?= base_url('jasa') ?>" class="btn btn-sm btn-outline-warning shadow-sm mt-0 mt-lg-4">
-          <i class="fas fa-search text-warning-50"></i> Temukan Jasa</a>
-      </div>
+          </div>
+          <div class="col-md-3 mb-3">
+            <button type="submit" class="btn btn-sm btn-outline-warning shadow-sm mt-0 mt-lg-4">
+              <i class="fas fa-search text-warning-50"></i> Temukan Jasa</button>
+          </div>
+        </form>
     </div>
   </div>
 
@@ -109,13 +98,13 @@
     <div class="card-body">
       <div class="tab-content" id="custom-tabs-three-tabContent">
         <div class="tab-pane fade show active" id="custom-tabs-three-renovasi" role="tabpanel" aria-labelledby="custom-tabs-three-renovasi-tab">
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin malesuada lacus ullamcorper dui molestie, sit amet congue quam finibus. Etiam ultricies nunc non magna feugiat commodo. Etiam odio magna, mollis auctor felis vitae, ullamcorper ornare ligula. Proin pellentesque tincidunt nisi, vitae ullamcorper felis aliquam id. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Proin id orci eu lectus blandit suscipit. Phasellus porta, ante et varius ornare, sem enim sollicitudin eros, at commodo leo est vitae lacus. Etiam ut porta sem. Proin porttitor porta nisl, id tempor risus rhoncus quis. In in quam a nibh cursus pulvinar non consequat neque. Mauris lacus elit, condimentum ac condimentum at, semper vitae lectus. Cras lacinia erat eget sapien porta consectetur. 
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin malesuada lacus ullamcorper dui molestie, sit amet congue quam finibus. Etiam ultricies nunc non magna feugiat commodo. Etiam odio magna, mollis auctor felis vitae, ullamcorper ornare ligula. Proin pellentesque tincidunt nisi, vitae ullamcorper felis aliquam id. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Proin id orci eu lectus blandit suscipit. Phasellus porta, ante et varius ornare, sem enim sollicitudin eros, at commodo leo est vitae lacus. Etiam ut porta sem. Proin porttitor porta nisl, id tempor risus rhoncus quis. In in quam a nibh cursus pulvinar non consequat neque. Mauris lacus elit, condimentum ac condimentum at, semper vitae lectus. Cras lacinia erat eget sapien porta consectetur.
         </div>
         <div class="tab-pane fade" id="custom-tabs-three-instalasi" role="tabpanel" aria-labelledby="custom-tabs-three-instalasi-tab">
-            Mauris tincidunt mi at erat gravida, eget tristique urna bibendum. Mauris pharetra purus ut ligula tempor, et vulputate metus facilisis. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Maecenas sollicitudin, nisi a luctus interdum, nisl ligula placerat mi, quis posuere purus ligula eu lectus. Donec nunc tellus, elementum sit amet ultricies at, posuere nec nunc. Nunc euismod pellentesque diam. 
+            Mauris tincidunt mi at erat gravida, eget tristique urna bibendum. Mauris pharetra purus ut ligula tempor, et vulputate metus facilisis. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Maecenas sollicitudin, nisi a luctus interdum, nisl ligula placerat mi, quis posuere purus ligula eu lectus. Donec nunc tellus, elementum sit amet ultricies at, posuere nec nunc. Nunc euismod pellentesque diam.
         </div>
         <div class="tab-pane fade" id="custom-tabs-three-pembangunan" role="tabpanel" aria-labelledby="custom-tabs-three-pembangunan-tab">
-            Morbi turpis dolor, vulputate vitae felis non, tincidunt congue mauris. Phasellus volutpat augue id mi placerat mollis. Vivamus faucibus eu massa eget condimentum. Fusce nec hendrerit sem, ac tristique nulla. Integer vestibulum orci odio. Cras nec augue ipsum. Suspendisse ut velit condimentum, mattis urna a, malesuada nunc. Curabitur eleifend facilisis velit finibus tristique. Nam vulputate, eros non luctus efficitur, ipsum odio volutpat massa, sit amet sollicitudin est libero sed ipsum. Nulla lacinia, ex vitae gravida fermentum, lectus ipsum gravida arcu, id fermentum metus arcu vel metus. Curabitur eget sem eu risus tincidunt eleifend ac ornare magna. 
+            Morbi turpis dolor, vulputate vitae felis non, tincidunt congue mauris. Phasellus volutpat augue id mi placerat mollis. Vivamus faucibus eu massa eget condimentum. Fusce nec hendrerit sem, ac tristique nulla. Integer vestibulum orci odio. Cras nec augue ipsum. Suspendisse ut velit condimentum, mattis urna a, malesuada nunc. Curabitur eleifend facilisis velit finibus tristique. Nam vulputate, eros non luctus efficitur, ipsum odio volutpat massa, sit amet sollicitudin est libero sed ipsum. Nulla lacinia, ex vitae gravida fermentum, lectus ipsum gravida arcu, id fermentum metus arcu vel metus. Curabitur eget sem eu risus tincidunt eleifend ac ornare magna.
         </div>
       </div>
     </div>
@@ -149,14 +138,11 @@
     </div>
     <div class="col-md-6">
       <div class="text-dark text-tawaran">JASA APA SAJA YANG KAMI TAWARKAN ?</div>
-      <h6>- Tukang Bangunan</h6>
-      <h6>- Tukang Listrik</h6>
-      <h6>- Tukang Kebun</h6>
-      <h6>- Tukang Kayu</h6>
-      <h6>- Tukang Las</h6>
-      <h6>- Arsitek</h6>
+      <?php foreach ($kategori as $row): ?>
+        <h6><?php echo $row->nama_kategori; ?></h6>
+      <?php endforeach; ?>
       <div class="col-md-12">
-        <a href="<?= base_url('jasa') ?>" class="ml-3 btn text-dark btn-sm btn-warning shadow-sm ml-auto">
+        <a href="<?= base_url('jasa/daftarjasa') ?>" class="ml-3 btn text-dark btn-sm btn-warning shadow-sm ml-auto">
           <i class="fas fa-clipboard-list text-dark-50"></i> Daftar Harga</a>
       </div>
     </div>
@@ -220,8 +206,3 @@
     </div>
   </div>
 </div>
-
-
-
-
-

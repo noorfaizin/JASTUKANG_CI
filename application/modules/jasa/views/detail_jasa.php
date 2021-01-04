@@ -5,6 +5,7 @@
     <h6 class="m-0 text-dark">Detail Jasa</h6>
 </div>
 <div class="row col-md-10 mx-auto bg-white p-3 mt-3 rounded">
+  <?php foreach ($jasa as $row): ?>
     <div class="col-md-5">
         <div id="carouselExampleIndicators" class="carousel slide mb-5" data-ride="carousel">
             <ol class="carousel-indicators-image">
@@ -33,16 +34,16 @@
     </div>
 
     <div class="col-md-7">
-        <h5 class="badge badge-warning mt-4">Kategori Jasa</h5>
-        <h4 class="font-weight-bold text-dark">Title Jasa</h4>
+        <h5 class="badge badge-warning mt-4"><?php echo $row->kat .' ' . $row->sub; ?></h5>
+        <h4 class="font-weight-bold text-dark"><?php echo $row->nama_jasa; ?></h4>
         <hr>
         <div class="form-group">
             <input type="text" class="form-control" id="uraian-jasa" name="uraian-jasa" placeholder="/meter">
         </div>
         <div class="custom-file mb-3">
-            <input type="file" multiple="multiple" name="image_name[]" class="custom-file-input" id="validatedCustomFile" required>
+            <input type="file" multiple name="image_name[]" class="custom-file-input" id="gallery-photo-add" required>
             <label class="custom-file-label" for="validatedCustomFile">Sematkan foto</label>
-            <div class="invalid-feedback">Example invalid custom file feedback</div>
+            <div class="gallery" ></div>
         </div>
         <div class="form-group">
             <textarea type="text" class="form-control" placeholder="Deskripsi pemesanan..." name="desc-pemesanan"></textarea>
@@ -50,22 +51,17 @@
         <hr>
         <small class="font-weight-light font-italic">Kecamatan :</small>
         <div class="form-group">
-          <select class="form-control" id="exampleFormControlSelect1">
+          <select class="form-control" id="kec" name="kec">
             <option>- Kecamatan -</option>
-            <option>Kecamatan 1</option>
-            <option>Kecamatan 2</option>
-            <option>Kecamatan 3</option>
-            <option>Kecamatan 4</option>
+            <?php foreach ($kecamatan as $kec): ?>
+              <option value="<?php echo $kec->id_lokasi; ?>"><?php echo $kec->kecamatan; ?></option>
+            <?php endforeach; ?>
           </select>
         </div>
         <small class="font-weight-light font-italic">Kelurahan :</small>
         <div class="form-group">
-          <select class="form-control" id="exampleFormControlSelect1">
+          <select id="kel" name="kel" class="form-control">
             <option>- Kelurahan -</option>
-            <option>Kelurahan 1</option>
-            <option>Kelurahan 2</option>
-            <option>Kelurahan 3</option>
-            <option>Kelurahan 4</option>
           </select>
         </div>
         <div class="form-group">
@@ -79,9 +75,9 @@
 
     <div class="col-md-12 mt-3 mb-3">
         <span class="font-weight-bold font-italic text-gray">"</span>
-            <small class="font-italic text-gray">
-                Deskripsi Jasa
-            </small>
+            <medium class="font-italic text-gray">
+                <?php echo $row->deskripsi; ?>
+            </medium>
         <span class="font-weight-bold font-italic text-gray">"</span>
         <hr>
         <div class="row">
@@ -92,16 +88,15 @@
                 <div class="row col-md-12">
                     <div class="col-md-3 col-sm-3">
                         <h5 class="badge badge-success font-weight-light">Borongan</h5>
-                        <h6>Rp. 20000 ,-</h6>
+                        <h6>Rp. <?php echo number_format($row->harga_borongan); ?> ,-</h6>
                     </div>
                     <div class="col-md-3 col-sm-3">
                         <h5 class="badge badge-success font-weight-light">Harian</h5>
-                        <h6>Rp. 100000 ,-</h6>
+                        <h6>Rp. <?php echo number_format($row->harga_harian); ?> ,-</h6>
                     </div>
                     <div class="col-md-12">
                         <small class="font-italic text-gray">
-                            <li>Harga borongan adalah harga per meter, dari jasa yang dipilih.</li>
-                            <li>Harga harian adalah harga per hari, dari jasa yang dipilih.</li>
+                            <li>Harga belum termasuk bahan bangunan.</li>
                         </small>
                     </div>
                 </div>
@@ -123,6 +118,8 @@
             </div>
         </div>
     </div>
+  <?php endforeach; ?>
+
 </div>
 
 <!-- Jasa Terkait -->

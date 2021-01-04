@@ -11,48 +11,44 @@ class Jasa extends CI_Controller {
 	}
 
         public function index() {
-                $data['judul'] = "Jasa Tukang";
-<<<<<<< HEAD
-                $data['kategori'] = $this->m_jasa->getKatJasa('jasa_kategori');
-=======
-                $data['kategori'] = $this->m_jasa->getAll('jasa_kategori');
->>>>>>> 308f91a2e99a74f0e3f927ef2f693be41daf5f52
-                //die(var_dump($data['kategori']));
-                //$data['subKategori'] = $this->m_jasa->getAll('jasa_sub_kategori')->result();
-                $this->load->view('template_frontend/header', $data);
-                $this->load->view('template_frontend/navbar', $data);
-                $this->load->view('jasa', $data);
-                $this->load->view('template_frontend/footer', $data);
+          $data['judul'] = "Jasa Tukang";
+          $sub = $this->input->post('subKat');
+          if (!empty($sub)){
+            $data['jasa'] = $this->m_jasa->getJasa($sub)->result();
+          }else{
+            $data['jasa'] = $this->m_jasa->getAllJasa();
+          }
+          $this->load->view('template_frontend/header',$data);
+          $this->load->view('template_frontend/navbar',$data);
+          $this->load->view('jasa', $data);
+          $this->load->view('template_frontend/footer',$data);
         }
 
-        public function Detailjasa() {
-                $data['judul'] = "Detail Jasa";
-                $this->load->view('template_frontend/header', $data);
-                $this->load->view('template_frontend/navbar', $data);
-                $this->load->view('detail_jasa', $data);
-                $this->load->view('template_frontend/footer', $data);
+        public function DetailJasa($id) {
+          $data['judul'] = "Detail Jasa";
+          $data['jasa'] = $this->m_jasa->getDetailJasa($id)->result();
+          $data['kecamatan'] = $this->m_jasa->getKecamatan()->result();
+          //die(print_r($data));
+          $this->load->view('template_frontend/header', $data);
+          $this->load->view('template_frontend/navbar', $data);
+          $this->load->view('detail_jasa', $data);
+          $this->load->view('template_frontend/footer', $data);
         }
-        public function Renovasi() {
-                $data['judul'] = "Jasa Renovasi";
-                $this->load->view('template_frontend/header', $data);
-                $this->load->view('template_frontend/navbar', $data);
-                $this->load->view('renovasi', $data);
-                $this->load->view('template_frontend/footer', $data);
+        public function get_kelurahan()
+        {
+          $kecamatan = $this->input->post('id', TRUE);
+    			$data = $this->m_jasa->getKelurahan($kecamatan)->result();
+    			foreach ($data as $row) {
+    				echo '<option value="'.$row->id_kelurahan.'">'.$row->kelurahan.'</option>';
+    			}
         }
-        public function Instalasi() {
-                $data['judul'] = "Jasa Instalasi";
-                $this->load->view('template_frontend/header', $data);
-                $this->load->view('template_frontend/navbar', $data);
-                $this->load->view('instalasi', $data);
-                $this->load->view('template_frontend/footer', $data);
-        }
-
-        public function Pembangunan() {
-                $data['judul'] = "Jasa Pembangunan";
-                $this->load->view('template_frontend/header', $data);
-                $this->load->view('template_frontend/navbar', $data);
-                $this->load->view('pembangunan', $data);
-                $this->load->view('template_frontend/footer', $data);
+        public function DaftarJasa() {
+          $data['judul'] = "Jasa Tukang";
+          $data['kategori'] = $this->m_jasa->getKatJasa('jasa_kategori');
+          $this->load->view('template_frontend/header', $data);
+          $this->load->view('template_frontend/navbar', $data);
+          $this->load->view('daftar_jasa', $data);
+          $this->load->view('template_frontend/footer', $data);
         }
 
 }

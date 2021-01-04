@@ -46,13 +46,13 @@
     <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js'></script>
     <script src='https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js'></script>
     <script  src="<?= base_url('assets/js/navbar_frontend.js') ?>"></script>
-    <script  src="<?= base_url('assets/js/jquery/jquery.min.js') ?>"></script>
+    <script  src="<?= base_url('assets/js/jquery/jquery.js') ?>"></script>
     <!-- search -->
     <script  src="<?= base_url('assets/js/search.js') ?>"></script>
     <!-- scroll smooth -->
     <!-- <script  src="assets/js/ScrollSmooth.js"></script> -->
 
-    <!------- BACK TO TOP ------->
+    <!--- BACK TO TOP ------->
     <script type="text/javascript">
     $(document).ready(function(){
         $(window).scroll(function(){
@@ -66,6 +66,64 @@
             $("html, body").animate({ scrollTop: 0 }, 600);
             return false;
         });
+
+        // Select Kategori
+
+        $('#kategori').on('change',function(){
+          var id = $(this).val();
+          if(id){
+            $.ajax({
+              type : 'POST',
+              url : 'beranda/get_sub_kat',
+              data : 'id='+id,
+              success:function(html) {
+                $('#subKat').html(html);
+              }
+            });
+          }else{
+            $('#subKat').html('<option value="">Select Kategori First</option>');
+          }
+        });
+
+        // Kecamatan & kelurahan
+        $('#kec').on('change',function(){
+          var id = $(this).val();
+          if(id){
+            $.ajax({
+              type : 'POST',
+              url : '<?php echo base_url() ?>/jasa/get_kelurahan',
+              data : 'id='+id,
+              success:function(html) {
+                $('#kel').html(html);
+              }
+            });
+          }else{
+            $('#kel').html('<option value="">Select Kategori First</option>');
+          }
+        });
+
+        // gallery photo added
+        $(function(){
+          var imagesPreview = function(input, placeToInsertImagePreview){
+            if(input.files){
+              var filesAmount = input.files.length;
+
+              for(i=0; i<filesAmount;i++){
+                var reader = new FileReader();
+                reader.onload = function(event){
+                  $($.parseHTML('<img>')).attr('src', event.target.result).appendTo(placeToInsertImagePreview);
+                }
+                reader.readAsDataURL(input.files[i]);
+              }
+            }
+          };
+          $('#gallery-photo-add').on('change', function(){
+            imagesPreview(this,'div.gallery');
+          });
+        });
+
+
     });
     </script>
+    <!--- SUB Kategori -->
 </html>
