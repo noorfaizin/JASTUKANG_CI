@@ -8,7 +8,7 @@ allowed');
   class M_jasa extends CI_Model
   {
 
-    public function getKatJasa($table)
+    public function getKatSub($table)
     {
       $query = $this->db->get($table)->result_array();
       foreach ($query as $kat=>$kategori) {
@@ -25,11 +25,22 @@ allowed');
       return $query;
     }
 
-    public function getJasa($where)
+    public function getSubJasa($where)
     {
       $this->db->select('jasa.*, sub.nama_sub_kategori_jasa as sub');
       $this->db->from('jasa');
       $this->db->join('jasa_sub_kategori as sub', 'sub.id_sub_kategori_jasa = jasa.id_subkategori');
+      $this->db->where('sub.id_sub_kategori_jasa', $where);
+      $query = $this->db->get();
+      return $query;
+    }
+
+    public function getKatJasa($where)
+    {
+      $this->db->select('jasa.*, sub.nama_kategori as sub');
+      $this->db->from('jasa');
+      $this->db->join('jasa_kategori as sub', 'sub.id_kategori_jasa = jasa.id_kategori');
+      $this->db->where('sub.id_kategori_jasa', $where);
       $query = $this->db->get();
       return $query;
     }

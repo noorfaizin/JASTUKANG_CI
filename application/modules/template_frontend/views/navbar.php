@@ -15,14 +15,19 @@
                     <div class="collapse navbar-collapse" id="navbarSupportedContent">
                         <ul class="navbar-nav ml-auto py-4 py-md-0">
                             <li class="nav-item pl-4 pl-md-0 ml-0 ml-md-4 active">
-                                <a class="nav-link" href="<?= base_url('') ?>">Home</a>
+                                <a class="nav-link" href="<?= base_url() ?>">Home</a>
                             </li>
                             <li class="nav-item pl-4 pl-md-0 ml-0 ml-md-4">
-                                <a class="nav-link dropdown-toggle"  href="<?= base_url() ?>jasa/daftarjasa" role="button" aria-haspopup="true" aria-expanded="false">Jasa</a>
+                                <a class="nav-link dropdown-toggle"  href="<?= base_url() ?>jasa" role="button" aria-haspopup="true" aria-expanded="false">Jasa</a>
                                 <div class="dropdown-menu">
-                                    <a class="dropdown-item" href="<?= base_url('jasa/renovasi') ?>">Renovasi</a>
-                                    <a class="dropdown-item" href="<?= base_url('jasa/instalasi') ?>">Instalasi</a>
-                                    <a class="dropdown-item" href="<?= base_url('jasa/pembangunan') ?>">Pembangunan</a>
+                                  <?php foreach ($jasa as $row): ?>
+                                    <a class="dropdown-item" href="<?= base_url(); ?>jasa/<?php echo $row['id_kategori_jasa'] ?>"><?php echo $row['nama_kategori']; ?></a>
+                                    <div class="submenu dropdown-menu">
+                                      <?php foreach ($row['jasa_sub_kategori'] as $sub): ?>
+                                        <a href="#" class="dropdown-item"><?php echo $sub['nama_sub_kategori_jasa']; ?></a>
+                                      <?php endforeach; ?>
+                                    </div>
+                                  <?php endforeach; ?>
                                 </div>
                             </li>
                             <li class="nav-item pl-4 pl-md-0 ml-0 ml-md-4">
