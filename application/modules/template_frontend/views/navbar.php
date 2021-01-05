@@ -17,14 +17,14 @@
                             <li class="nav-item pl-4 pl-md-0 ml-0 ml-md-4 active">
                                 <a class="nav-link" href="<?= base_url() ?>">Home</a>
                             </li>
-                            <li class="nav-item pl-4 pl-md-0 ml-0 ml-md-4">
+                            <li class="nav-item multi-level-dropdown pl-4 pl-md-0 ml-0 ml-md-4">
                                 <a class="nav-link dropdown-toggle"  href="<?= base_url() ?>jasa" role="button" aria-haspopup="true" aria-expanded="false">Jasa</a>
-                                <div class="dropdown-menu">
+                                <div class="dropdown-menu dropdown-toggle">
                                   <?php foreach ($jasa as $row): ?>
-                                    <a class="dropdown-item" href="<?= base_url(); ?>jasa/<?php echo $row['id_kategori_jasa'] ?>"><?php echo $row['nama_kategori']; ?></a>
-                                    <div class="submenu dropdown-menu">
+                                    <a class="dropdown-item" data-toggle="toggle" href="<?= base_url(); ?>jasa/<?php echo $row['id_kategori_jasa'] ?>"><?php echo $row['nama_kategori']; ?></a>
+                                    <div class="dropdown-item dropdown-submenu">
                                       <?php foreach ($row['jasa_sub_kategori'] as $sub): ?>
-                                        <a href="#" class="dropdown-item"><?php echo $sub['nama_sub_kategori_jasa']; ?></a>
+                                        <a href="<?= base_url(); ?>jasa/<?php echo $row['id_kategori_jasa'] ?>/<?php echo $sub['id_sub_kategori_jasa'] ?>" class="dropdown-item dropdown-submenu"><?php echo $sub['nama_sub_kategori_jasa']; ?></a>
                                       <?php endforeach; ?>
                                     </div>
                                   <?php endforeach; ?>

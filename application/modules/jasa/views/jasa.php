@@ -34,41 +34,60 @@
 
 <div class="row col-md-11 mx-auto mt-4 p-0">
   <?php foreach ($jasa as $row): ?>
-    <div class="col-md-8">
-      <div class="col-md-12 bg-white p-3 mb-3">
-        <h4 class="m-0 text-dark"><?php echo $row->sub; ?></h4>
-      </div>
-
-      <!-- jasa cat -->
-      <div class="col-list-3 p-0" style="border-radius:15px">
-        <div id="myProduct" class="recent-car-list">
-          <div class="col-lg text-dark justify-content-center p-0">
-            <a href="<?= base_url() ?>jasa/detailjasa/<?php echo $row->id_jasa ?>">
-              <div class="card m-0 shadow" style="border-radius:15px">
-                <div  class="card-header text-center m-0">
-                  <img src="<?= base_url() ?>/assets/images/<?php //echo $row->gambar ?>icon.png" class="card-img-top rounded" alt="image">
-                </div>
-
-                <div class="card-body p-0" style="margin-bottom:-10px;">
-                  <div class="col-md-12 bg-dark p-2">
-                      <h5 class="text-white m-0"><?php echo $row->nama_jasa; ?></h5>
+    <?php if (!empty($row)){ ?>
+      <div class="col-md-8">
+        <div class="col-md-12 bg-white p-3 mb-3">
+          <?php if (!empty ($row->sub)){ ?>
+            <h4 class="m-0 text-dark"><?php echo $row->sub; ?></h4>
+          <?php }else{ ?>
+            <h4 class="m-0 text-dark">All Jasa</h4>
+          <?php } ?>
+        </div>
+        <div class="col-list-3 p-0" style="border-radius:15px">
+          <div id="myProduct" class="recent-car-list">
+            <div class="col-lg text-dark justify-content-center p-0">
+              <a href="<?= base_url() ?>jasa/detailjasa/<?php echo $row->id_jasa ?>">
+                <div class="card m-0 shadow" style="border-radius:15px">
+                  <div  class="card-header text-center m-0">
+                    <img src="<?= base_url() ?>/assets/images/<?php //echo $row->gambar ?>icon.png" class="card-img-top rounded" alt="image">
                   </div>
-                  <div class="col-md-12 p-2 pb-4">
-                    <div class="font-weight-light font-italic text-dark" style="font-size:20px">Harga :</div>
-                    <div class="col-md-12">
-                      <h5 class="badge badge-success font-weight-light mr-1">Borongan</h5><medium>Rp. <?php echo number_format($row->harga_borongan) ?> ,-</medium>
+
+                  <div class="card-body p-0" style="margin-bottom:-10px;">
+                    <div class="col-md-12 bg-dark p-2">
+                        <h5 class="text-white m-0"><?php echo $row->nama_jasa; ?></h5>
                     </div>
-                    <div class="col-lg-12">
-                      <h5 class="badge badge-success font-weight-light mr-1">Harian</h5><medium>Rp. <?php echo number_format($row->harga_harian) ?> ,-</medium>
+                    <div class="col-md-12 p-2 pb-4">
+                      <div class="font-weight-light font-italic text-dark" style="font-size:20px">Harga :</div>
+                      <div class="col-md-12">
+                        <h5 class="badge badge-success font-weight-light mr-1">Borongan</h5>
+                        <medium>
+                          Rp. <?php echo number_format($row->harga_borongan) ?> ,-/
+                          <?php if ($row->satuan == 1){ ?>
+                            titik
+                          <?php }else if ($row->satuan == 2){ ?>
+                            m2
+                          <?php }else if ($row->satuan == 3){ ?>
+                            m3
+                          <?php } ?>
+                        </medium>
+                      </div>
+                      <div class="col-lg-12">
+                        <h5 class="badge badge-success font-weight-light mr-1">Harian</h5><medium>Rp. <?php echo number_format($row->harga_harian) ?> ,-/ hari</medium>
+                      </div>
                     </div>
                   </div>
                 </div>
-              </div>
-            </a>
+              </a>
+            </div>
           </div>
         </div>
+      <?php } else { ?>
+        <div class="col-md-8">
+          <div class="col-md-12 bg-white p-3 mb-3">
+              <h4 class="m-0 text-dark">Jasa Tidak DiTemukan</h4>
+          </div>
+      <?php } ?>
       </div>
-    </div>
   <?php endforeach; ?>
   <div class="col-md-4">
     <div class="accordion desc-jasa" id="accordionExample">

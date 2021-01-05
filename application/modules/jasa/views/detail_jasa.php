@@ -38,8 +38,19 @@
         <h4 class="font-weight-bold text-dark"><?php echo $row->nama_jasa; ?></h4>
         <hr>
         <div class="form-group">
-            <input type="text" class="form-control" id="uraian-jasa" name="uraian-jasa" placeholder="/meter">
+        <small class="font-weight-light font-italic">Ukuran :</small>
+          <?php if ($row->satuan == 1){?>
+            <input type="text" class="form-control" id="uraian-jasa" name="titik" placeholder="Titik">
+          <?php }else if ($row->satuan == 2){ ?>
+            <input type="text" class="form-control" id="uraian-jasa" name="panjang" placeholder="Panjang">
+            <input type="text" class="form-control" id="uraian-jasa" name="lebar" placeholder="Lebar">
+          <?php }else if($row->satuan == 3){ ?>
+            <input type="text" class="form-control" id="uraian-jasa" name="panjang" placeholder="Panjang">
+            <input type="text" class="form-control" id="uraian-jasa" name="lebar" placeholder="Lebar">
+            <input type="text" class="form-control" id="uraian-jasa" name="tinggi" placeholder="Tinggi">
+          <?php } ?>
         </div>
+        <hr>
         <div class="custom-file mb-3">
             <input type="file" multiple name="image_name[]" class="custom-file-input" id="gallery-photo-add" required>
             <label class="custom-file-label" for="validatedCustomFile">Sematkan foto</label>

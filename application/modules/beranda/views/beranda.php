@@ -7,7 +7,7 @@
   <div class="col-md-6 mt-3 mx-auto bg-white rounded shadow temukan-jasa" style="padding:10px 20px">
     <div class="row" style="margin-bottom:-10px">
       <div class="col-md-4">
-        <form class="form-group" action="<?php echo base_url(); ?>/jasa" method="post">
+        <form class="form-group" action="<?php echo base_url(); ?>jasa" method="post">
           <!-- KATEGORI JASA -->
             <div class="form-group">
               <label class="text-dark" for="exampleFormControlSelect1">Kategori Jasa :</label>
