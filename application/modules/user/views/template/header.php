@@ -19,6 +19,13 @@
     <!-- direct chat -->
     <link rel="stylesheet" href="<?= base_url('assets/css/chat.css')?>">
     
+    <!-- <style>
+        @media (max-width: 767px) {
+            .sidebar{
+                display: none;
+            }
+        }
+    </style> -->
 </head>
 <body class="page-top">
 	<!-- Page Wrapper -->

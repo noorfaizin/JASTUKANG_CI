@@ -8,7 +8,7 @@
 
         <!-- Sidebar Toggle (Topbar) -->
         <button id="sidebarToggleTop" class="btn btn-link d-md-none rounded-circle mr-3">
-        <i class="fa fa-bars"></i>
+            <i class="fa fa-bars text-warning"></i>
         </button>
 
         <!-- Topbar Search -->
@@ -16,7 +16,7 @@
         <div class="input-group">
             <input type="text" class="form-control bg-light border-0 small" placeholder="Search for..." aria-label="Search" aria-describedby="basic-addon2">
             <div class="input-group-append">
-            <button class="btn btn-primary" type="button">
+            <button class="btn btn-warning" type="button">
                 <i class="fas fa-search fa-sm"></i>
             </button>
             </div>
@@ -37,7 +37,7 @@
                 <div class="input-group">
                 <input type="text" class="form-control bg-light border-0 small" placeholder="Search for..." aria-label="Search" aria-describedby="basic-addon2">
                 <div class="input-group-append">
-                    <button class="btn btn-primary" type="button">
+                    <button class="btn btn-warning" type="button">
                     <i class="fas fa-search fa-sm"></i>
                     </button>
                 </div>
@@ -49,11 +49,11 @@
         <!-- Nav Item - Alerts -->
         <li class="nav-item dropdown no-arrow mx-1">
             <a class="nav-link dropdown-toggle" href="#" id="alertsDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                <i class="fas fa-bell fa-fw"></i>
+                <i class="fas fa-bell fa-fw text-dark"></i>
             </a>
             <!-- Dropdown - Alerts -->
             <div class="dropdown-list dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="alertsDropdown">
-                <h6 class="dropdown-header">
+                <h6 class="dropdown-header bg-warning border-0">
                     Transaksi
                 </h6>
                 <a class="dropdown-item d-flex align-items-center" href="<?= base_url('user/transaksi_jasa')?>">
@@ -65,12 +65,24 @@
                 <a class="dropdown-item d-flex align-items-center" href="<?= base_url('user/status_pemesanan')?>">
                     Status Pemesanan
                 </a>
+
+                <div class="dropdown-divider"></div>
+                <!-- TRANSAKSI TUKANG -->
+                <a class="dropdown-item d-flex align-items-center" href="<?= base_url('tukang/pesanan')?>">
+                    Pesanan
+                </a>
+                <a class="dropdown-item d-flex align-items-center" href="<?= base_url('tukang/historyjob')?>">
+                    Riwayat Pekerjaan
+                </a>
+                <a class="dropdown-item d-flex align-items-center" href="<?= base_url('tukang/saldo')?>">
+                    Saldo
+                </a>
             </div>
         </li>
 
         <!-- Nav Item - Messages -->
         <li class="nav-item dropdown no-arrow mx-1">
-            <a class="nav-link" href="<?= base_url('user/message')?>">
+            <a class="nav-link text-dark" href="<?= base_url('user/message')?>">
                 <i class="fas fa-envelope fa-fw"></i>
             </a>
         </li>
@@ -86,20 +98,24 @@
             <!-- Dropdown - User Information -->
             <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="userDropdown">
             <a class="dropdown-item" href="<?= base_url('user')?>">
-                <i class="fas fa-cogs fa-sm fa-fw mr-2 text-gray-400"></i>
+                <i class="fas fa-cogs fa-sm fa-fw mr-2 text-dark-400"></i>
                 Pengaturan
             </a>
+            <a class="dropdown-item" href="<?= base_url('user/address')?>">
+                <i class="fas fa-home fa-sm fa-fw mr-2 text-dark-400"></i>
+                Alamat
+            </a>
             <a class="dropdown-item" href="<?= base_url('user/historyorder')?>">
-                <i class="fas fa-list fa-sm fa-fw mr-2 text-gray-400"></i>
+                <i class="fas fa-list fa-sm fa-fw mr-2 text-dark-400"></i>
                 Riwayat Pemesanan
             </a>
             <a class="dropdown-item" href="<?= base_url('user/address')?>">
-                <i class="fas fa-home fa-sm fa-fw mr-2 text-gray-400"></i>
-                Alamat
+                <i class="fas fa-list fa-sm fa-fw mr-2 text-dark-400"></i>
+                Jasa Tukang
             </a>
             <div class="dropdown-divider"></div>
             <a class="dropdown-item" href="#" data-toggle="modal" data-target="#logoutModal">
-                <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
+                <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-dark-400"></i>
                 Logout
             </a>
             </div>
