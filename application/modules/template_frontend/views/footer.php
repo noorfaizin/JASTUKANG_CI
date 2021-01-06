@@ -47,6 +47,7 @@
     <script src='https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js'></script>
     <script  src="<?= base_url('assets/js/navbar_frontend.js') ?>"></script>
     <script  src="<?= base_url('assets/js/jquery/jquery.js') ?>"></script>
+    <script  src="<?= base_url('assets/js/jquery/jquery.min.js') ?>"></script>
     <!-- search -->
     <script  src="<?= base_url('assets/js/search.js') ?>"></script>
     <!-- scroll smooth -->

@@ -51,6 +51,7 @@ allowed');
       $this->db->from('jasa');
       $this->db->join('jasa_kategori as kat', 'kat.id_kategori_jasa = jasa.id_kategori');
       $this->db->join('jasa_sub_kategori as sub', 'sub.id_sub_kategori_jasa = jasa.id_subkategori');
+      $this->db->where('jasa.id_jasa', $where);
       $query = $this->db->get();
       return $query;
     }

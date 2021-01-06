@@ -47,6 +47,7 @@ class Jasa extends CI_Controller {
           }else {
             $data['jasa'] = $this->m_jasa->getAllJasa()->result();
           }
+          $data['kategori'] = $this->m_jasa->getKatSub('jasa_kategori');
           //$this->load->view('template_frontend/header',$data);
           //$this->load->view('template_frontend/navbar',$data);
           $this->template->header();

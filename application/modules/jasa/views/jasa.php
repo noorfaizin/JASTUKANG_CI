@@ -33,8 +33,8 @@
 </div>
 
 <div class="row col-md-11 mx-auto mt-4 p-0">
+  <?php if (!empty($jasa)){ ?>
   <?php foreach ($jasa as $row): ?>
-    <?php if (!empty($row)){ ?>
       <div class="col-md-8">
         <div class="col-md-12 bg-white p-3 mb-3">
           <?php if (!empty ($row->sub)){ ?>
@@ -81,6 +81,7 @@
             </div>
           </div>
         </div>
+    <?php endforeach; ?>
       <?php } else { ?>
         <div class="col-md-8">
           <div class="col-md-12 bg-white p-3 mb-3">
@@ -88,81 +89,27 @@
           </div>
       <?php } ?>
       </div>
-  <?php endforeach; ?>
   <div class="col-md-4">
     <div class="accordion desc-jasa" id="accordionExample">
-      <div class="card">
-        <div class="bg-warning p-1 card-header" id="headingOne">
-          <h2 class="mb-0">
-            <button class="text-white btn btn-link btn-block text-left font-weight-bold" type="button" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
-              Jasa Cat
-            </button>
-          </h2>
-        </div>
-        <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordionExample">
-          <div class="card-body bg-white">
-            Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus
-            terry richardson ad squid. 3 wolf moon officia aute, non cupidatat
-            skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod.
-            Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin
-            coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica,
-            craft beer labore wes anderson cred nesciunt sapiente ea proident.
-            Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer
-            farm-to-table, raw denim aesthetic synth nesciunt you probably haven't
-            heard of them accusamus labore sustainable VHS.
+      <h4 class="m-0 text-dark">Kategori</h4>
+      <?php foreach ($kategori as $row): ?>
+        <div class="card">
+          <div class="bg-warning p-1 card-header" id="">
+            <h2 class="mb-0">
+              <button class="text-white btn btn-link btn-block text-left font-weight-bold" type="button" data-toggle="collapse" data-target="#collapse" aria-expanded="true" aria-controls="collapse">
+                <?php echo $row['nama_kategori'] ?>
+              </button>
+            </h2>
+          </div>
+          <div id="collapse" class="collapse" aria-labelledby="heading" data-parent="#accordionExample">
+            <div class="card-body bg-white">
+              <?php foreach ($row['jasa_sub_kategori'] as $sub): ?>
+                <li> <a href="<?php echo base_url() . 'jasa/' . $row['id_kategori_jasa']. '/' . $sub['id_sub_kategori_jasa'] ?>"><?php echo $sub['nama_sub_kategori_jasa'] ?></a> </li>
+              <?php endforeach; ?>
+            </div>
           </div>
         </div>
-      </div>
-      <div class="card">
-        <div class="bg-warning p-1 card-header" id="headingTwo">
-          <h2 class="mb-0">
-            <button class="text-white btn btn-link btn-block text-left font-weight-bold collapsed" type="button" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
-              Jasa Listrik
-            </button>
-          </h2>
-        </div>
-        <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionExample">
-          <div class="card-body bg-white">
-            Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus
-            terry richardson ad squid. 3 wolf moon officia aute, non cupidatat
-            skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod.
-            Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin
-            coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica,
-            craft beer labore wes anderson cred nesciunt sapiente ea proident.
-            Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table,
-            raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus
-            labore sustainable VHS.
-          </div>
-        </div>
-      </div>
-      <div class="card">
-        <div class="bg-warning p-1 card-header" id="headingThree">
-          <h2 class="mb-0">
-            <button class="text-white btn btn-link btn-block text-left font-weight-bold collapsed" type="button" data-toggle="collapse" data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
-              Jasa Atap
-            </button>
-          </h2>
-        </div>
-        <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordionExample">
-          <div class="card-body bg-white">
-            Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.
-          </div>
-        </div>
-      </div>
-      <div class="card">
-        <div class="bg-warning p-1 card-header" id="headingFour">
-          <h2 class="mb-0">
-            <button class="text-white btn btn-link btn-block text-left font-weight-bold collapsed" type="button" data-toggle="collapse" data-target="#collapseFour" aria-expanded="false" aria-controls="collapseFour">
-              Jas Keramik
-            </button>
-          </h2>
-        </div>
-        <div id="collapseFour" class="collapse" aria-labelledby="headingFour" data-parent="#accordionExample">
-          <div class="card-body bg-white">
-            Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.
-          </div>
-        </div>
-      </div>
+      <?php endforeach; ?>
     </div>
   </div>
 </div>
