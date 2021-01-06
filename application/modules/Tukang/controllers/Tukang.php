@@ -42,7 +42,6 @@
         $data['id_kelurahan'] = $row['id_lokasi'];
       }
       $this->session->set_flashdata('edit', '<script type="text/javascript">get_tukang_edit();</script>');
-      // $tukang['tukang'] = $this->M_Tukang->getTukangById($id_tukang);
       $tukang['jasa'] = $this->M_Tukang->getJasa();
       $this->load->view('Dashboard/Template_backend/header', $data);
       $this->load->view('Dashboard/Template_backend/sidebar');
@@ -68,7 +67,7 @@
 
     public function saveTukang()
     {
-      $this->form_validation->set_rules('hp', 'Nomor Handphone', 'trim|required|integer', 
+      $this->form_validation->set_rules('hp', 'Nomor Handphone', 'trim|required|integer|is_unique[tukang_detail.hp_tukang]', 
         array('required' => '%s harus dipilih', 'integer' => '%s harus berupa angka'));
       $this->form_validation->set_rules('no_identitas', 'Nomor Identitas', 'trim|required|integer', 
         array('required' => '%s harus dipilih', 'integer' => '%s harus berupa angka'));
@@ -80,7 +79,9 @@
         array('required' => '%s harus diisi'));
       $this->form_validation->set_rules('tgl_lahir', 'Tanggal Lahir', 'trim|required', 
         array('required' => '%s harus diisi'));
-
+      $this->form_validation->set_rules('email', 'Email', 'trim|requiredvalid_email|is_unique[tukang_detail.email]', 
+      array('required' => '%s harus diisi'));
+    
       if ($this->form_validation->run() == false) {
         $this->session->set_flashdata('sukses','Data tidak dapat diubah');
         redirect(base_url('Tukang'));
@@ -94,44 +95,26 @@
       }
     }
 
-    public function updateTukang($id)
+    public function updateTukang()
     {
-      $this->form_validation->set_rules('harga', 'Harga Tukang', 'trim|required|integer', 
+      $this->form_validation->set_rules('hp', 'Nomor Handphone', 'trim|required|integer', 
         array('required' => '%s harus dipilih', 'integer' => '%s harus berupa angka'));
-      $this->form_validation->set_rules('keterangan_satuan', 'Keterangan Satuan Tukang', 'trim|required|integer', 
-        array('required' => '%s harus dipilih', 'integer' => '%s harus berupa angka'));
-      $this->form_validation->set_rules('satuan', 'Satuan Tukang', 'trim|required', 
-        array('required' => '%s harus dipilih'));
-      $this->form_validation->set_rules('kemampuan', 'Kemampuan', 'trim|required|integer', 
-        array('required' => '%s harus dipilih', 'integer' => '%s harus berupa angka'));
-      $this->form_validation->set_rules('kategori', 'Kategori Tukang', 'trim|required', 
-        array('required' => '%s harus diisi'));
-      $this->form_validation->set_rules('vendor', 'Vendor', 'trim|required', 
-        array('required' => '%s harus diisi'));
-      $this->form_validation->set_rules('deskripsi', 'Deskripsi Tukang', 'trim|required', 
-        array('required' => '%s harus diisi'));
       $this->form_validation->set_rules('nama', 'Nama Tukang', 'trim|required', 
+        array('required' => '%s harus diisi'));
+      $this->form_validation->set_rules('kelurahanEdit', 'Alamat ', 'trim|required', 
+        array('required' => '%s harus diisi'));
+      $this->form_validation->set_rules('alamat', 'Alamat Lengkap', 'trim|required', 
+        array('required' => '%s harus diisi'));
+      $this->form_validation->set_rules('tgl_lahir', 'Tanggal Lahir', 'trim|required', 
         array('required' => '%s harus diisi'));
 
       if ($this->form_validation->run() == false) {
         $this->session->set_flashdata('sukses','Data tidak dapat diubah');
-        redirect(base_url('Tukang'));
-      } else {
-        $data= [ 
-          'harga_tukang' => $this->input->post('harga', TRUE),
-          'keterangan_satuan' => $this->input->post('keterangan_satuan', TRUE),
-          'satuan' => $this->input->post('satuan', TRUE),
-          'kemampuan' => $this->input->post('kemampuan', TRUE),
-          'id_kategori' => $this->input->post('kategori', TRUE),
-          'id_vendor' => $this->input->post('vendor', TRUE),
-          'detail' => $this->input->post('deskripsi', TRUE),
-          'nama_tukang' => $this->input->post('nama', TRUE)
-        ];
-
-        $nama =  $this->input->post('nama', TRUE);
-        $this->session->set_flashdata('sukses','Data berhasil diubah');
-        $this->M_Tukang->updateTukang($data, $nama, $id);
         // redirect(base_url('Tukang'));
+        echo "asd";
+      } else {
+        $id_tukang = $this->input->post('id_tukang', TRUE);
+        $this->M_Tukang->updateTukang($id_tukang);
       }
     }
 

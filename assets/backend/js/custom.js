@@ -1,8 +1,8 @@
 $(document).ready(function(){
-
+    
     $('.tanggal').datepicker({
         format: "yyyy-mm-dd",
-        autoclose:true
+        autoclose:true  
     });
     
     $('.kecamatan').change(function(){ 
@@ -54,20 +54,18 @@ $(document).ready(function(){
     });
      
     $('.kecamatanTukang').change(function(){ 
-        var id=$(this).val();
+        var ide=$(this).val();
         var id_lokasi =  $('[name="kelurahan"]').val();
         $.ajax({
             url : base_url + "Tukang/getKelurahan/"+ id ,
             method : "POST",
-            data : {id: id},
+            data : {id: ide},
             async : true,
             dataType : 'json',
             success: function(data){
-                // console.log(data);
                 $('select[name="kelurahanEdit"]').empty();
 
                 $.each(data, function(key, value) {
-                    // console.log(value.kelurahan);
                     if(id_lokasi==value.id_kelurahan){
                         $('select[name="kelurahanEdit"]').append('<option value="'+ value.id_kelurahan +'" selected>'+ value.kelurahan +'</option>').trigger('change');
                     }else{
@@ -80,10 +78,17 @@ $(document).ready(function(){
         return false;
     });
 });
-//load data for edit
+
+function get_sweetalert(pesan, judul, tema){
+    Swal.fire({
+        title: judul,
+        icon: tema,
+        text: pesan
+    });
+}
+
 function get_tukang_edit(){
     var id_tukang = $('[name="id_tukang"]').val();
-    // console.log(id_tukang);
     $.ajax({
         url : base_url + "Tukang/get_data_edit/",
         method : "POST",
@@ -95,6 +100,7 @@ function get_tukang_edit(){
                 $('[name="nama"]').val(data[i].nama_tukang);
                 $('[name="kelurahan"]').val(data[i].id_kelurahan);
                 $('[name="hp"]').val(data[i].hp_tukang);
+                $('[name="email"]').val(data[i].email);
                 $('[name="tgl_lahir"]').val(data[i].tgl_lahir);
                 $('[name="jasa"]').val(data[i].spesialisasi).trigger('change');
                 $('[name="kecamatanTukang"]').val(data[i].id_kecamatan).trigger('change');
@@ -106,8 +112,6 @@ function get_tukang_edit(){
     });
 }
 
-
-//load data for edit
 function get_data_edit(){
     var id_vendor = $('[name="id_vendor"]').val();
     // console.log(id_vendor);
@@ -132,12 +136,164 @@ function get_data_edit(){
     });
 }
 
-function hapusKategoriJasa(id) {
-    var r=confirm("Hapus kategori ini?")
-    if (r==true)
-      window.location = base_url+"Kategori/hapusKategoriJasa/"+id;
-    else
-      return false;
+function showModalVerifP($id){
+    $('.modal-title').text('Verifikasi Pembayaran');
+    $.ajax({
+        url : "Transaksi/cekPembayaran/"+$id,
+        type : "GET",
+        dataType : "JSON",
+        success : function(data){
+            var formatDate = function(date) {
+                return date.getDate() + "-" + date.getMonth() + "-" + date.getFullYear() + " " +  ('0' + date.getHours()).slice(-2) + ":" + ('0' + date.getMinutes()).slice(-2) + ":" + ('0' + date.getSeconds()).slice(-2) + ' ' + (date.getHours() < 12 ? 'AM' : 'PM');
+              }
+            var timestamp = data.waktu;
+            var date = new Date(timestamp);
+            $('#tujuanBank').html(data.nama_rekening);
+            $('#rekeningTujuan').html(data.no_rekening);
+            $('#nominalBayar').html(data.total_harga);
+            $('#namaPengirim').html(data.nama_pengirim);
+            $('#asalBank').html(data.asal_bank);
+            $('#asalRekening').html(data.asal_rekening);
+            $('#totalBayar').html(data.total_bayar);
+            $('#waktuBayar').html(date);
+            
+            $('#btnKonfirmasi').attr("href", base_url + "Transaksi/konfirmasiMaterial/" + $id + "/1/" + data.total_harga);
+            $('#btnBatal').attr("href", base_url + "Transaksi/konfirmasiMaterial/" + $id + "/2/0");
+            $('#buktiTF').attr("src", base_url + "assets/images/transaksi/" + data.path);
+            $('#lihatGambar').attr("href", base_url + "assets/images/transaksi/" + data.path);
+            $('#modalTransaksi').modal('show');
+        },
+        error : function (jqXHR, textStatus, errorThrown){
+            alert('Gagal untuk mengupdate');
+        }
+    });
+}
+
+function hubungiVendor($id, $tabel){
+    $('.modal-title').text('Hubungi Vendor');
+    $.ajax({
+        url : "Transaksi/getPemesananMaterialBy/"+$id,
+        type : "GET",
+        dataType : "JSON",
+        success : function(data){
+            // console.log(data);
+            $('#bodyModalPesanan').empty();
+            $('#bodyModalPemesan').empty();
+            
+            $.each(data, function(key, value) {
+                var tabel = '';
+                if ($tabel==1){
+                    tabel += '<tr><td>' + value.nama_material + '</td><td>' + value.harga_material + '</td><td>' + value.quantity + '</td><td>' + value.nama_vendor + '</td><td>' + value.alamat_vendor + '</td><td>' + value.no_hp + '</td></tr>';
+                    $('#bodyModalPesanan').append(tabel);
+                    if (key==0)
+                    {
+                        var tabelPemesan = '';
+                        tabelPemesan += '<tr><td>' + value.nama_penerima + '</td><td>' + value.hp_penerima + '</td><td>' + value.alamat_penerima + '</td><td>' + value.kecamatan + '</td></tr>';
+                        $('#bodyModalPemesan').append(tabelPemesan);
+                    }
+                } else if ($tabel==2){
+                    tabel += '<tr><td>' + value.nama_material + '</td><td>' + value.harga_material + '</td><td>' + value.quantity + '</td></tr>';
+                    $('#bodyModalPesanan').append(tabel);
+                }
+            });
+
+            $('#modalHubungiVendor').modal('show');
+        },
+        error : function (jqXHR, textStatus, errorThrown){
+            alert('Gagal memproses');
+        }
+    });
+}
+
+
+function konfirmasiPengiriman(id, pesan){
+    const swalWithBootstrapButtons = Swal.mixin({
+        customClass: {
+            cancelButton: 'btn btn-danger mr-1',
+            confirmButton: 'btn btn-success ml-1'
+        },
+        buttonsStyling: false
+    })
+    
+    if (pesan==1) {
+        swalWithBootstrapButtons.fire({
+            title: 'Konfirmasi pesanan sudah dikirim',
+            text: "Tidak akan dapat membatalkan ini!",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonText: 'Konfirmasi!',
+            cancelButtonText: 'Batal!',
+            reverseButtons: true
+            }).then((result) => {
+            if (result.isConfirmed) {
+                window.location = base_url+"Transaksi/konfirmasiSudahTerkirim/"+id+"/"+pesan;
+            } else if (
+                /* Read more about handling dismissals below */
+                result.dismiss === Swal.DismissReason.cancel
+            ) {
+                swalWithBootstrapButtons.fire({
+                    title: 'Konfirmasi dibatalkan',
+                    icon: 'error'
+                });
+            }
+        })
+    } else if (pesan==2 || pesan==3) {
+        swalWithBootstrapButtons.fire({
+            title: 'Konfirmasi pesanan sudah sampai',
+            text: "Tidak akan dapat membatalkan ini!",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonText: 'Konfirmasi!',
+            cancelButtonText: 'Batal!',
+            reverseButtons: true
+            }).then((result) => {
+            if (result.isConfirmed) {
+                window.location = base_url+"Transaksi/konfirmasiSudahTerkirim/"+id+"/"+pesan;
+            } else if (
+                /* Read more about handling dismissals below */
+                result.dismiss === Swal.DismissReason.cancel
+            ) {
+                swalWithBootstrapButtons.fire({
+                    title: 'Konfirmasi dibatalkan',
+                    icon: 'error'
+                });
+            }
+        })
+    }
+}
+
+/* ============== KUMPULAN NONAKTIFKAN DAN HAPUS ============== */
+
+function delete_double(id, controller, table) {
+    const swalWithBootstrapButtons = Swal.mixin({
+        customClass: {
+            cancelButton: 'btn btn-danger mr-1',
+            confirmButton: 'btn btn-success ml-1'
+        },
+        buttonsStyling: false
+    })
+    
+    swalWithBootstrapButtons.fire({
+        title: 'Hapus kategori ini?',
+        text: "Tidak akan dapat membatalkan ini!",
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonText: 'Hapus ini!',
+        cancelButtonText: 'Batal!',
+        reverseButtons: true
+        }).then((result) => {
+        if (result.isConfirmed) {
+            window.location = base_url+ controller + "/delete" + table + "/"+id;
+        } else if (
+            /* Read more about handling dismissals below */
+            result.dismiss === Swal.DismissReason.cancel
+        ) {
+            swalWithBootstrapButtons.fire({
+                title: 'Data tidak dihapus',
+                icon: 'error'
+            });
+        }
+    })
 }
 
 function hapusKategoriMaterial(id) {
@@ -157,9 +313,97 @@ function hapusVendor(id) {
 }
 
 function hapus(id, table){
-    var r=confirm("Hapus " + table + " ini?")
-    if (r==true)
-      window.location = base_url+ table + "/delete" + table + "/"+id;
-    else
-      return false;
+    const swalWithBootstrapButtons = Swal.mixin({
+        customClass: {
+            cancelButton: 'btn btn-danger mr-1',
+            confirmButton: 'btn btn-success ml-1'
+        },
+        buttonsStyling: false
+    })
+    
+    swalWithBootstrapButtons.fire({
+        title: 'Apakah mau hapus data ini?',
+        text: "Tidak akan dapat membatalkan ini!",
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonText: 'Hapus ini!',
+        cancelButtonText: 'Batal!',
+        reverseButtons: true
+        }).then((result) => {
+        if (result.isConfirmed) {
+            window.location = base_url+ table + "/delete" + table + "/"+id;
+        } else if (
+            /* Read more about handling dismissals below */
+            result.dismiss === Swal.DismissReason.cancel
+        ) {
+            swalWithBootstrapButtons.fire({
+                title: 'Data tidak dihapus',
+                icon: 'error'
+            });
+        }
+    })
 }
+
+function nonaktifkan(id, table){
+    const swalWithBootstrapButtons = Swal.mixin({
+        customClass: {
+            cancelButton: 'btn btn-danger mr-1',
+            confirmButton: 'btn btn-success ml-1'
+        },
+        buttonsStyling: false
+    })
+    
+    swalWithBootstrapButtons.fire({
+        title: 'Apakah mau menonaktifkan data ini?',
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonText: 'Nonaktifkan!',
+        cancelButtonText: 'Batal!',
+        reverseButtons: true
+        }).then((result) => {
+        if (result.isConfirmed) {
+            window.location = base_url+ table + "/"+id;
+        } else if (
+            /* Read more about handling dismissals below */
+            result.dismiss === Swal.DismissReason.cancel
+        ) {
+            swalWithBootstrapButtons.fire({
+                title: 'Data tidak dinonaktifkan',
+                icon: 'error'
+            });
+        }
+    })
+}
+
+function aktifkan(id, table){
+    const swalWithBootstrapButtons = Swal.mixin({
+        customClass: {
+            cancelButton: 'btn btn-danger mr-1',
+            confirmButton: 'btn btn-success ml-1'
+        },
+        buttonsStyling: false
+    })
+    
+    swalWithBootstrapButtons.fire({
+        title: 'Apakah mau mengaktifkan data ini?',
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonText: 'Aktifkan!',
+        cancelButtonText: 'Batal!',
+        reverseButtons: true
+        }).then((result) => {
+        if (result.isConfirmed) {
+            window.location = base_url+ table + "/"+id;
+        } else if (
+            /* Read more about handling dismissals below */
+            result.dismiss === Swal.DismissReason.cancel
+        ) {
+            swalWithBootstrapButtons.fire({
+                title: 'Data tidak diaktifkan',
+                icon: 'error'
+            });
+        }
+    })
+}
+
+/* ============== KUMPULAN NONAKTIFKAN DAN HAPUS ============== */

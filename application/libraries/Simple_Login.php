@@ -17,6 +17,9 @@ class Simple_Login {
         $this->CI =& get_instance(); 
     }
 
+    /**
+     * Login yang digunakan untuk Pembeli dan Admin saja
+     */
     public function login($email, $password) 
     {
         $query = $this->CI->db->get_where(

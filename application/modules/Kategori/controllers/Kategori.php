@@ -31,21 +31,27 @@
       $this->load->view('Dashboard/Template_backend/footer');
     }
 
+
+
     public function saveKategoriJasa()
     {
       $this->form_validation->set_rules('jasa', 'Nama Jasa', 'trim|required', array('required' => '%s harus diisi'));
 
       if ($this->form_validation->run() == false) {
-        $this->session->set_flashdata('sukses','Data tidak dapat dimasukkan');
-        redirect(base_url('Kategori/jasa'));
+        $pesan = "Gagal Ditambahkan";
+        $jasa = "Kategori Material";
+        $tema = "error";
       } else {
-        $this->session->set_flashdata('sukses','Data berhasil dimasukkan');
+        $pesan = "Berhasil Ditambahkan";
+        $jasa = "Kategori Material";
+        $tema = "success";
         $data= [ 
           'nama_kategori' => $this->input->post('jasa', TRUE)
         ];
         $this->M_Kategori->saveKategoriJasa($data);
-        redirect(base_url('Kategori/jasa'));
       }
+      $this->get_flashdata($pesan, $jasa, $tema);
+      redirect(base_url('Kategori/jasa'));
     }
 
     public function saveKategoriMaterial()
@@ -54,17 +60,21 @@
       $this->form_validation->set_rules('jasa', 'Nama Kategori Material', 'trim|required', array('required' => '%s harus diisi'));
 
       if ($this->form_validation->run() == false) {
-        $this->session->set_flashdata('sukses','Data tidak dapat dimasukkan');
-        redirect(base_url('Kategori/material'));
+        $pesan = "Gagal Ditambahkan";
+        $jasa = "Kategori Material";
+        $tema = "error";
       } else {
-        $this->session->set_flashdata('sukses','Data berhasil dimasukkan');
+        $pesan = "Berhasil Ditambahkan";
+        $jasa = "Kategori Material";
+        $tema = "success";
         $data= [ 
           'nama_kategori' => $this->input->post('material', TRUE),
           'id_kategori_jasa' => $this->input->post('jasa', TRUE)
         ];
         $this->M_Kategori->saveKategoriMaterial($data);
-        redirect(base_url('Kategori/material'));
       }
+      $this->get_flashdata($pesan, $jasa, $tema);
+      redirect(base_url('Kategori/material'));
     }
 
     public function updateKategoriJasa($id)
@@ -72,16 +82,20 @@
       $this->form_validation->set_rules('jasa', 'Nama Jasa', 'trim|required', array('required' => '%s harus diisi'));
 
       if ($this->form_validation->run() == false) {
-        $this->session->set_flashdata('sukses','Data tidak dapat dimasukkan');
-        redirect(base_url('Kategori/jasa'));
+        $pesan = "Gagal Diubah";
+        $jasa = "Kategori Material";
+        $tema = "error";
       } else {
-        $this->session->set_flashdata('sukses','Data berhasil dimasukkan');
+        $pesan = "Berhasil Diubah";
+        $jasa = "Kategori Material";
+        $tema = "success";
         $data= [ 
           'nama_kategori' => $this->input->post('jasa', TRUE)
         ];
         $this->M_Kategori->updateKategoriJasa($data, $id);
-        redirect(base_url('Kategori/jasa'));
       }
+      $this->get_flashdata($pesan, $jasa, $tema);
+
     }
 
     public function updateKategoriMaterial($id)
@@ -90,28 +104,45 @@
       $this->form_validation->set_rules('jasa', 'Nama Kategori Material', 'trim|required', array('required' => '%s harus diisi'));
 
       if ($this->form_validation->run() == false) {
-        $this->session->set_flashdata('sukses','Data tidak dapat dimasukkan');
-        redirect(base_url('Kategori/material'));
+        $pesan = "Gagal Diubah";
+        $jasa = "Kategori Material";
+        $tema = "error";
       } else {
-        $this->session->set_flashdata('sukses','Data berhasil dimasukkan');
+        $pesan = "Berhasil Diubah";
+        $jasa = "Kategori Material";
+        $tema = "success";
         $data= [ 
           'nama_kategori' => $this->input->post('material', TRUE),
           'id_kategori_jasa' => $this->input->post('jasa', TRUE)
         ];
         $this->M_Kategori->updateKategoriMaterial($data, $id);
-        redirect(base_url('Kategori/material'));
       }
+      $this->get_flashdata($pesan, $jasa, $tema);
+      redirect(base_url('Kategori/material'));
     }
 
-    public function hapusKategoriJasa($id)
+    public function deleteKategoriJasa($id)
     {
+      $pesan = "Berhasil Dihapus";
+      $jasa = "Kategori Jasa";
+      $tema = "success";
+      $this->get_flashdata($pesan, $jasa, $tema);
       $this->M_Kategori->hapusKategoriJasa($id);
       redirect(base_url('Kategori/jasa'));
     }
 
-    public function hapusKategoriMaterial($id)
+    public function deleteKategoriMaterial($id)
     {
+      $pesan = "Berhasil Dihapus";
+      $jasa = "Kategori Material";
+      $tema = "success";
+      $this->get_flashdata($pesan, $jasa, $tema);
       $this->M_Kategori->hapusKategoriMaterial($id);
       redirect(base_url('Kategori/material'));
+    }
+
+    private function get_flashdata($pesan, $jasa, $tema)    
+    {
+      $this->session->set_flashdata('success', "<script type='text/javascript'>get_sweetalert('$pesan ','$jasa','$tema');</script>");
     }
   }

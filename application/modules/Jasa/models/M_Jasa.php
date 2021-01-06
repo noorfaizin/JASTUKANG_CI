@@ -25,14 +25,12 @@ class M_Jasa extends CI_Model{
   public function saveJasa($data)
   {
     $this->db->insert('jasa', $data);
-    redirect(base_url('Jasa'));
   }
   
   public function updateJasa($data, $id)
   {
     $this->db->where('id_jasa', $id);
     $this->db->update('jasa', $data);
-    redirect(base_url('Jasa'));
   }
 
   private function _saveImage($data = array())
@@ -44,6 +42,5 @@ class M_Jasa extends CI_Model{
   {
     $this->db->where('id_jasa', $id);
     $this->db->delete('jasa');
-    redirect(base_url('Jasa'));
   }
 }

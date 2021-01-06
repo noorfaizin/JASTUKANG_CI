@@ -29,6 +29,10 @@ class M_Tukang extends CI_Model{
     return $query;
   }
 
+  public function getKategori()
+  {
+    return $this->db->get('jasa')->result();
+  }
   public function getKemacatan()
   {
     return $this->db->get('lokasi_kecamatan')->result();
@@ -39,28 +43,26 @@ class M_Tukang extends CI_Model{
     return $this->db->get('jasa')->result();
   }
 
-  
-  // public function getKategori()
-  // {
-  //   return $this->db->get('material_kategori')->result();
-  // }
-
-  // public function getVendor()
-  // {
-  //   $this->db->select('id_vendor, nama_vendor');
-  //   return $this->db->get('vendor')->result();
-  // }
-
   public function saveTukang()
   {
+    $this->db->select_max('id_tukang');
+    $query = $this->db->get('tukang_detail')->result_array();
+    $no_tukang =  substr($query['0']['id_tukang'], 3,4);
+    $no_tukang++;
+    $getNumber = strlen((string)$no_tukang);
+    if ($getNumber == 1 || $getNumber == 2) {
+      $final = str_pad("$no_tukang",3, '0', STR_PAD_LEFT);
+      $id_tukang = "TK_". $final;
+    } 
+
     $tukang_account = [
-      'email' => $this->input->post('hp'),
+      'id_tukang' => $id_tukang,
+      'email' => $this->input->post('email'),
+      'hp_tukang' => $this->input->post('hp'),
       'password' => password_hash($this->input->post('tgl_lahir'), PASSWORD_BCRYPT),
-      'role_id' => "3",
-      'status' => "1"
+      'aktif' => "1"
     ];
-    $this->db->insert('user_account', $tukang_account);
-    $id_tukang = $this->db->insert_id();
+    $this->db->insert('tukang_account', $tukang_account);
 
     $data= [ 
       'id_tukang' => $id_tukang,
@@ -74,19 +76,18 @@ class M_Tukang extends CI_Model{
     ];
     $this->db->insert('tukang_detail', $data);
 
-
     $_FILES['ktp']['name']     = $_FILES['file_ktp']['name']; 
     $_FILES['ktp']['type']     = $_FILES['file_ktp']['type']; 
     $_FILES['ktp']['tmp_name'] = $_FILES['file_ktp']['tmp_name']; 
     $_FILES['ktp']['error']    = $_FILES['file_ktp']['error']; 
     $_FILES['ktp']['size']     = $_FILES['file_ktp']['size']; 
-    
+
     $_FILES['profil_picture']['name']     = $_FILES['files']['name']; 
     $_FILES['profil_picture']['type']     = $_FILES['files']['type']; 
     $_FILES['profil_picture']['tmp_name'] = $_FILES['files']['tmp_name']; 
     $_FILES['profil_picture']['error']    = $_FILES['files']['error']; 
     $_FILES['profil_picture']['size']     = $_FILES['files']['size']; 
-      
+
     $getNoIdentitas = $this->input->post('no_identitas');
     $getTglLahir = $this->input->post('tgl_lahir');
 
@@ -105,10 +106,10 @@ class M_Tukang extends CI_Model{
     $configProfil['upload_path'] = $profilPath; 
     $configProfil['allowed_types'] = 'jpg|jpeg|png|gif'; 
     $configProfil['file_name'] = $profilName;
-      
+
     $this->load->library('upload', $config); 
     $this->upload->initialize($config); 
-      
+
     if($this->upload->do_upload('ktp')){ 
         $fileData = $this->upload->data(); 
         $this->load->library('upload', $configProfil); 
@@ -140,58 +141,67 @@ class M_Tukang extends CI_Model{
     redirect(base_url('Tukang'));
   }
   
-  public function updateTukang($data, $nama, $id_material)
+  public function updateTukang($id_tukang)
   {
-    $errorUploadType = $statusMsg = ''; 
-    if ($_FILES['files']['size'] == 0) {
-      $this->db->where('id_material', $id_material);
-      $this->db->update('material', $data);
-      echo "asdas";
-    } else {
-      $filesCount = count($_FILES['files']['name']);
-      for($i = 0; $i < $filesCount; $i++){ 
-        $_FILES['file']['name']     = $_FILES['files']['name'][$i]; 
-        $_FILES['file']['type']     = $_FILES['files']['type'][$i]; 
-        $_FILES['file']['tmp_name'] = $_FILES['files']['tmp_name'][$i]; 
-        $_FILES['file']['error']    = $_FILES['files']['error'][$i]; 
-        $_FILES['file']['size']     = $_FILES['files']['size'][$i]; 
-         
-        $uploadPath = 'assets/images/material/'; 
-        $config['upload_path'] = $uploadPath; 
-        $config['allowed_types'] = 'jpg|jpeg|png|gif'; 
-        $newName = $id_material."_".$i."_".$nama;
-        $config['file_name'] = $newName;
-         
-        $this->load->library('upload', $config); 
-        $this->upload->initialize($config); 
-         
-        if($this->upload->do_upload('file')){ 
-          $this->db->select('path');
-          $this->db->where('id_material', $id_material);
-          $gambar = $this->db->get('material_gambar')->result(); 
-          foreach ($gambar as $gb) {
-            unlink("assets/images/material/".$gb->path);
-          }
-          $this->db->where('id_material', $id_material);
-          $this->db->delete('material_gambar');
+    $tukang_account = [
+      'email' => $this->input->post('email'),
+      'hp_tukang' => $this->input->post('hp')
+    ];
+    $this->db->where('id_user', $id_tukang);
+    $this->db->update('user_account', $tukang_account);
 
-          $fileData = $this->upload->data(); 
-          $uploadData[$i]['path'] = $fileData['file_name']; 
-          $uploadData[$i]['id_material'] = $id_material; 
-        }else{  
-          $errorUploadType = $this->upload->display_errors();  
-        } 
-      } 
+    $data= [ 
+      'id_lokasi' => $this->input->post('kelurahanEdit', TRUE),
+      'nama_tukang' => $this->input->post('nama', TRUE),
+      'alamat_tukang' => $this->input->post('alamat', TRUE),
+      'hp_tukang' => $this->input->post('hp', TRUE),
+      'spesialisasi' => $this->input->post('jasa', TRUE),
+      'tgl_lahir' => $this->input->post('tgl_lahir', TRUE)
+    ];
+    $this->db->where('id_tukang', $id_tukang);
+    $this->db->update('tukang_detail', $data);
+    
+    $_FILES['profil_picture']['name']     = $_FILES['files']['name']; 
+    $_FILES['profil_picture']['type']     = $_FILES['files']['type']; 
+    $_FILES['profil_picture']['tmp_name'] = $_FILES['files']['tmp_name']; 
+    $_FILES['profil_picture']['error']    = $_FILES['files']['error']; 
+    $_FILES['profil_picture']['size']     = $_FILES['files']['size']; 
+      
+    if(!empty($_FILES['files']['name'])){
+      $getTglLahir = $this->input->post('tgl_lahir');
   
-      $errorUploadType = !empty($errorUploadType)?'<br/>File Type Error: '.trim($errorUploadType, ' | '):''; 
-      if(!empty($uploadData)){ 
-        $this->db->where('id_material', $id_material);
-        $this->db->update('material', $data);
-        $insert = $this->_saveImage($uploadData); 
-      } else {  
-        echo "Sorry, there was an error uploading your file.". $errorUploadType;
-      }
+      $ktpPath    = 'assets/images/tukang/identitas/'; 
+      $profilPath = 'assets/images/tukang/profil/'; 
+      $tgl_lahir = substr($getTglLahir, 0, 4);
+      
+      $profilName = $id_tukang ."_". $tgl_lahir;
+  
+      $configProfil['upload_path'] = $profilPath; 
+      $configProfil['allowed_types'] = 'jpg|jpeg|png|gif'; 
+      $configProfil['file_name'] = $profilName;
+      $configProfil['overwrite'] = TRUE;
+              
+      $this->load->library('upload', $configProfil); 
+      $this->upload->initialize($configProfil); 
+      if ($this->upload->do_upload('profil_picture')) {
+        $dataProfilPicture = $this->upload->data();
+        $dataGambar = [
+          'gambar' => $dataProfilPicture['file_name']
+        ];          
+
+        $this->db->select('gambar');
+        $this->db->where('id_tukang', $id_tukang);
+        $gambar = $this->db->get('tukang_detail')->result(); 
+        foreach ($gambar as $gb) {
+          unlink("assets/images/tukang/profil/".$gb->gambar);
+        }
+
+        $this->db->where('id_tukang', $id_tukang);
+        $this->db->update('tukang_detail', $dataGambar);
+        $this->session->set_flashdata('sukses','Data berhasil dimasukkan');
+      } 
     }
+    redirect(base_url('Tukang'));
   }
 
   private function _saveImage($data = array())
@@ -209,9 +219,8 @@ class M_Tukang extends CI_Model{
       unlink("assets/images/tukang/identitas/".$gb->bukti_identitas);
     }
 
+    $tables = array('tukang_detail', 'tukang_account');
     $this->db->where('id_tukang', $id);
-    $this->db->delete('tukang_detail');
-    $this->db->where('id_user', $id);
-    $this->db->delete('user_account');
+    $this->db->delete($tables);
   }
 }

@@ -16,9 +16,15 @@
                 <input type="hidden" class="form-control" name="kelurahan" required>
                 <input type="text" class="form-control" id="namaTukangForm" placeholder="Nama Lengkap" name="nama" required>
               </div>
-              <div class="form-group">
-                <label for="hpTukangForm">Nomor Handphone</label>
-                <input type="text" class="form-control" id="hpTukangForm" placeholder="Nomor Handphone" name="hp" required>
+              <div class="form-group row">
+                <div class="col-6">
+                  <label for="emailTukangForm">Email</label>
+                  <input type="text" class="form-control" id="emailTukangForm" placeholder="Email" name="email" >
+                </div>
+                <div class="col-6">
+                  <label for="hpTukangForm">Nomor Handphone</label>
+                  <input type="text" class="form-control" id="hpTukangForm" placeholder="Nomor Handphone" name="hp" >
+                </div>
               </div>
               <div class="form-group row">
                 <div class="col-4">

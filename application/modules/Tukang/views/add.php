@@ -6,22 +6,28 @@
   </div>
   
   <div class="row">
-    <div class="col-10 offset-1">
+    <div class="col-xl-10 col-md-12 offset-xl-1">
       <div class="card shadow mb-4">
           <div class="card-body">
             <form method="POST" action="<?= base_url() ?>Tukang/saveTukang" enctype="multipart/form-data" autocomplete="off">
               <div class="form-group">
                 <label for="namaTukangForm">Nama Tukang</label>
-                <input type="text" class="form-control" id="namaTukangForm" placeholder="Nama Lengkap" name="nama" required>
+                <input type="text" class="form-control" id="namaTukangForm" placeholder="Nama Lengkap" name="nama" >
               </div>
-              <div class="form-group">
-                <label for="hpTukangForm">Nomor Handphone</label>
-                <input type="text" class="form-control" id="hpTukangForm" placeholder="Nomor Handphone" name="hp" required>
+              <div class="form-group row">
+                <div class="col-6">
+                  <label for="emailTukangForm">Email</label>
+                  <input type="text" class="form-control" id="emailTukangForm" placeholder="Email" name="email" >
+                </div>
+                <div class="col-6">
+                  <label for="hpTukangForm">Nomor Handphone</label>
+                  <input type="text" class="form-control" id="hpTukangForm" placeholder="Nomor Handphone" name="hp" >
+                </div>
               </div>
               <div class="form-group row">
                 <div class="col-4">
                   <label for="tanggalForm">Tanggal Lahir</label>
-                  <input type="text" class="form-control tanggal" id="tanggalForm" name="tgl_lahir" required>
+                  <input type="text" class="form-control tanggal" id="tanggalForm" name="tgl_lahir" >
                 </div>
                 <div class="col-4 mt-1">
                   <label for="profilTukang">Foto Profil Tukang</label>
@@ -40,7 +46,7 @@
               <div class="form-group row">
                 <div class="col-6">
                   <label for="noIdentitasForm">Nomor Identitas</label>
-                  <input type="text" class="form-control" id="noIdentitasForm" placeholder="Nomor KTP" name="no_identitas" required>
+                  <input type="text" class="form-control" id="noIdentitasForm" placeholder="Nomor KTP" name="no_identitas" >
                 </div>
                 <div class="col-6 mt-1">
                   <label for="buktiIdentitas">Foto Bukti Identitas</label>
@@ -50,7 +56,7 @@
               <div class="form-group row">
                   <div class="col-6">
                     <label for="exampleFormControlSelect1">Kecamatan</label>
-                        <select class="form-control kecamatan" name="kecamatan" required>
+                        <select class="form-control kecamatan" name="kecamatan" >
                           <option value="">No Selected</option>
                           <?php foreach($kecamatan as $row):?>
                           <option value="<?php echo $row->id_kecamatan;?>"><?php echo $row->kecamatan;?></option>
@@ -59,7 +65,7 @@
                   </div>
                   <div class="col-6">
                     <label for="exampleFormControlSelect1">Kelurahan</label>
-                        <select class="form-control kelurahan" name="kelurahan" id="kelurahan" required>
+                        <select class="form-control kelurahan" name="kelurahan" id="kelurahan" >
                           <option value="">No Selected</option>
                     </select>
                   </div>

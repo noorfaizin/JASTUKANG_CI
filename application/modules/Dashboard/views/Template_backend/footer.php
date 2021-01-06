@@ -4,7 +4,7 @@
       <footer class="sticky-footer bg-white">
         <div class="container my-auto">
           <div class="copyright text-center my-auto">
-            <span>Copyright &copy; Jastukang 2020</span>
+            <span>Copyright &copy; Jastukang <?= date('Y') ?></span>
           </div>
         </div>
       </footer>
@@ -43,11 +43,13 @@
 
   <!-- Bootstrap core JavaScript-->
   <script src="<?= base_url() ?>assets/backend/vendor/jquery/jquery.min.js"></script>
-  <script src="<?= base_url() ?>assets/backend/js/custom.js"></script>
 
   <script src="<?= base_url() ?>assets/backend/js/bootstrap-datepicker.min.js"></script>
 
-  <?= $this->session->flashdata('edit'); ?>
+  
+  <script src="<?= base_url() ?>/assets/backend/vendor/sweetalert/sweetalert2.min.js"></script>
+  <link rel="stylesheet" href="<?= base_url() ?>/assets/backend/vendor/sweetalert/sweetalert2.min.css">
+  <script src="<?= base_url() ?>assets/backend/js/custom.js"></script>
 
   <script src="<?= base_url() ?>assets/backend/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 
@@ -67,6 +69,9 @@
   <script src="<?= base_url() ?>assets/backend/js/demo/chart-area-demo.js"></script>
   <script src="<?= base_url() ?>assets/backend/js/demo/chart-pie-demo.js"></script>
 
+  <?= $this->session->flashdata('edit'); ?>
+  <?= $this->session->flashdata('success'); $this->session->unset_userdata('success');?>
+  
 </body>
 
 </html>

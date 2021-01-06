@@ -19,13 +19,13 @@
               </tr>
             </thead>
             <tbody>
-              <?php foreach ($jasa_kategori as $p) : ?>
+              <?php $controller = "Kategori"; $table = "KategoriJasa"; foreach ($jasa_kategori as $p) :?>
                   <tr>
                       <td><?= $p->nama_kategori; ?></td>
                       <td>
                         <div class="btn-group d-flex justify-content-center">
                             <button type="button" class="btn btn-success margin-5 text-white" data-toggle="modal" data-target="#modalEditJasa<?= $p->id_kategori_jasa ?>">Edit</button>
-                            <a href="javascript:void(0);" type="button" class="btn btn-danger" onclick="hapusKategoriJasa(<?= $p->id_kategori_jasa ?>);">Delete</a>
+                            <a href="javascript:void(0);" type="button" class="btn btn-danger" onclick="delete_double('<?= $p->id_kategori_jasa ?>', '<?= $controller ?>', '<?= $table ?>');">Delete</a>
                         </div>
                       </td>
                   </tr>
