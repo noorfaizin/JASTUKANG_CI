@@ -28,7 +28,7 @@
 	<div id="accordian-4">
 		<div class="card mt-3 m-t-30">
 			<!-- Email -->
-			<a class="text-dark card-header link border-top" data-toggle="collapse" data-parent="#accordian-4" href="#Toggle-2" aria-expanded="false" aria-controls="Toggle-2">
+			<a class="text-dark card-header link collapsed border-top" data-toggle="collapse" data-parent="#accordian-4" href="#Toggle-2" aria-expanded="false" aria-controls="Toggle-2">
 				<i class="fa fa-envelope" aria-hidden="true"></i>
 				<span class=" font-weight-bold">Email</span>
 			</a>
