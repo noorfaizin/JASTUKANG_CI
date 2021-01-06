@@ -56,6 +56,11 @@ allowed');
       return $query;
     }
 
+    public function getGambarJasa($where)
+    {
+      return $this->db->get_where('jasa_gambar', array('id_jasa'=>$where));
+    }
+
     public function getKecamatan()
     {
       $query = $this->db->get('lokasi_kecamatan');

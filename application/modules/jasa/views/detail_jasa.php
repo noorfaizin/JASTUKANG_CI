@@ -10,26 +10,29 @@
       <div class="col-md-5">
           <div id="carouselExampleIndicators" class="carousel slide mb-5" data-ride="carousel">
               <ol class="carousel-indicators-image">
-                  <li data-target="#carouselExampleIndicators" data-slide-to="0" style="width:70px;"class="active">
-                      <img class="d-block w-100" src="<?= base_url('assets/images/icon.png') ?>" alt="First slide">
+                  <li data-target="#carouselExampleIndicators" data-slide-to="0" style="width:70px;" class="active">
+                      <img class="d-block w-100" src="<?= base_url('assets/images/jasa/'). $row->gambar; ?>" alt="<?php echo $row->gambar; ?>">
                   </li>
-                  <li data-target="#carouselExampleIndicators" data-slide-to="1" style="width:70px;">
-                      <img class="d-block w-100" src="<?= base_url('assets/images/icon.png') ?>" alt="First slide">
-                  </li>
-                  <li data-target="#carouselExampleIndicators" data-slide-to="2" style="width:70px;">
-                      <img class="d-block w-100" src="<?= base_url('assets/images/icon.png') ?>" alt="First slide">
-                  </li>
+                  <?php $i = 1; ?>
+                  <?php if (!empty($gambar)): ?>
+                    <?php foreach ($gambar as $img): ?>
+                      <li data-target="#carouselExampleIndicators" data-slide-to="<?php echo $i++ ?>" style="width:70px;">
+                          <img class="d-block w-100" src="<?= base_url('assets/images/jasa/galery/').$img->path ?>" alt="<?php echo $img->nama_gambar ?>e">
+                      </li>
+                    <?php endforeach; ?>
+                  <?php endif; ?>
               </ol>
               <div class="carousel-inner">
-                  <div class="carousel-item active">
-                      <img class="d-block w-100" src="<?= base_url('assets/images/icon.png') ?>" alt="First slide">
+                  <div class="carousel-item active" style="height:400px;">
+                      <img class="d-block w-100" src="<?= base_url('assets/images/jasa/') . $row->gambar; ?>" alt="<?php echo $row->gambar ?>">
                   </div>
-                  <div class="carousel-item">
-                      <img class="d-block w-100" src="<?= base_url('assets/images/icon.png') ?>" alt="Second slide">
-                  </div>
-                  <div class="carousel-item">
-                      <img class="d-block w-100" src="<?= base_url('assets/images/icon.png') ?>" alt="Third slide">
-                  </div>
+                  <?php if (!empty($gambar)): ?>
+                    <?php foreach ($gambar as $img): ?>
+                      <div class="carousel-item" style="height:400px;">
+                          <img class="d-block w-100" src="<?= base_url('assets/images/jasa/galery/') . $img->path ?>" alt="<?php echo $img->nama_gambar ?>" >
+                      </div>
+                    <?php endforeach; ?>
+                  <?php endif; ?>
               </div>
           </div>
       </div>

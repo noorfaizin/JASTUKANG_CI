@@ -61,6 +61,7 @@ class Jasa extends CI_Controller {
           $data['judul'] = "Detail Jasa";
           $data['jasa'] = $this->m_jasa->getDetailJasa($id)->result();
           $data['kecamatan'] = $this->m_jasa->getKecamatan()->result();
+          $data['gambar'] = $this->m_jasa->getGambarJasa($id)->result();
           //die(print_r($data));
           $this->template->header();
           $this->template->navbar();
