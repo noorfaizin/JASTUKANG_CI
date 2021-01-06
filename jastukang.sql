@@ -16,7 +16,7 @@ SET time_zone = "+00:00";
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
 /*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
-/*!40101 SET NAMES utf8mb4 */;
+/*!40101 SET NAMES utf8 */;
 
 --
 -- Database: `jastukang`
@@ -39,7 +39,7 @@ CREATE TABLE `jasa` (
   `id_keahlian` varchar(6) NOT NULL,
   `gambar` varchar(255) NOT NULL,
   `deskripsi` varchar(255) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 
 --
 -- Dumping data untuk tabel `jasa`
@@ -59,7 +59,7 @@ CREATE TABLE `jasa_gambar` (
   `id_jasa` varchar(6) NOT NULL,
   `nama_gambar` varchar(225) DEFAULT NULL,
   `path` varchar(255) DEFAULT 'no_image.png'
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 
 -- --------------------------------------------------------
 
@@ -70,7 +70,7 @@ CREATE TABLE `jasa_gambar` (
 CREATE TABLE `jasa_kategori` (
   `id_kategori_jasa` varchar(1) NOT NULL,
   `nama_kategori` varchar(20) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 
 --
 -- Dumping data untuk tabel `jasa_kategori`
@@ -91,7 +91,7 @@ CREATE TABLE `jasa_sub_kategori` (
   `id_sub_kategori_jasa` varchar(3) NOT NULL,
   `id_kategori_jasa` varchar(1) NOT NULL,
   `nama_sub_kategori_jasa` varchar(50) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 
 --
 -- Dumping data untuk tabel `jasa_sub_kategori`
@@ -131,7 +131,7 @@ CREATE TABLE `jasa_ulasan` (
   `id_user` int DEFAULT NULL,
   `nilai` int DEFAULT NULL,
   `keterangan` varchar(255) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 
 -- --------------------------------------------------------
 
@@ -142,7 +142,7 @@ CREATE TABLE `jasa_ulasan` (
 CREATE TABLE `kategori_keahlian` (
   `id_keahlian` varchar(6) NOT NULL,
   `nama_keahlian` varchar(100) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 
 -- --------------------------------------------------------
 
@@ -153,7 +153,7 @@ CREATE TABLE `kategori_keahlian` (
 CREATE TABLE `lokasi_kecamatan` (
   `id_lokasi` varchar(2) NOT NULL,
   `kecamatan` varchar(20) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 
 --
 -- Dumping data untuk tabel `lokasi_kecamatan`
@@ -187,7 +187,7 @@ CREATE TABLE `lokasi_kelurahan` (
   `id_kelurahan` varchar(5) NOT NULL,
   `id_kecamatan` varchar(2) NOT NULL,
   `kelurahan` varchar(25) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 
 --
 -- Dumping data untuk tabel `lokasi_kelurahan`
@@ -221,7 +221,7 @@ CREATE TABLE `material` (
   `satuan` varchar(255) DEFAULT NULL,
   `keterangan_satuan` varchar(255) DEFAULT NULL,
   `kemampuan` int DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 
 -- --------------------------------------------------------
 
@@ -233,7 +233,7 @@ CREATE TABLE `material_gambar` (
   `id` int NOT NULL,
   `id_material` int DEFAULT NULL,
   `path` varchar(255) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 
 -- --------------------------------------------------------
 
@@ -245,7 +245,7 @@ CREATE TABLE `material_kategori` (
   `id_kategori_material` int NOT NULL,
   `id_kategori_jasa` int DEFAULT NULL,
   `nama_kategori` varchar(255) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 
 -- --------------------------------------------------------
 
@@ -259,7 +259,7 @@ CREATE TABLE `material_transaksi_detail` (
   `nama_material` varchar(255) DEFAULT NULL,
   `harga_material` varchar(255) DEFAULT NULL,
   `quantity` int DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 
 -- --------------------------------------------------------
 
@@ -273,7 +273,7 @@ CREATE TABLE `material_ulasan` (
   `id_user` int DEFAULT NULL,
   `nilai` int DEFAULT NULL,
   `keterangan` varchar(255) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 
 -- --------------------------------------------------------
 
@@ -286,7 +286,7 @@ CREATE TABLE `transaksi` (
   `id_user` varchar(8) NOT NULL,
   `total` int NOT NULL,
   `tgl_pesanan` date NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 
 -- --------------------------------------------------------
 
@@ -300,7 +300,7 @@ CREATE TABLE `transaksi_bukti` (
   `id_tukang` varchar(8) NOT NULL,
   `path` varchar(255) NOT NULL,
   `tgl_upload` date NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 
 -- --------------------------------------------------------
 
@@ -319,7 +319,7 @@ CREATE TABLE `transaksi_detail` (
   `lokasi_pengerjaan` varchar(255) NOT NULL,
   `qty` int NOT NULL,
   `deskripsi` varchar(255) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 
 -- --------------------------------------------------------
 
@@ -333,7 +333,7 @@ CREATE TABLE `transaksi_done` (
   `id_jasa` varchar(6) DEFAULT NULL,
   `id_tukang` varchar(8) DEFAULT NULL,
   `tgl_done` date NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 
 -- --------------------------------------------------------
 
@@ -345,7 +345,7 @@ CREATE TABLE `transaksi_gambar` (
   `id` int NOT NULL,
   `id_transaksi` varchar(10) NOT NULL,
   `path` varchar(255) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci ROW_FORMAT=DYNAMIC;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci ROW_FORMAT=DYNAMIC;
 
 -- --------------------------------------------------------
 
@@ -358,7 +358,7 @@ CREATE TABLE `transaksi_invalid` (
   `id_user` varchar(8) NOT NULL,
   `ket` varchar(255) NOT NULL,
   `tgl` date NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 
 -- --------------------------------------------------------
 
@@ -375,7 +375,7 @@ CREATE TABLE `transaksi_material` (
   `status_pengiriman` varchar(255) DEFAULT NULL,
   `status_pembayaran` varchar(255) DEFAULT NULL,
   `total_harga` int DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 
 -- --------------------------------------------------------
 
@@ -390,7 +390,7 @@ CREATE TABLE `transaksi_ongoing` (
   `id_tukang` varchar(8) NOT NULL,
   `max_tgl` date NOT NULL,
   `min_tgl` date NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci ROW_FORMAT=DYNAMIC;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci ROW_FORMAT=DYNAMIC;
 
 -- --------------------------------------------------------
 
@@ -408,7 +408,7 @@ CREATE TABLE `transaksi_pending` (
   `durasi_pengerjaan` int DEFAULT NULL,
   `durasi_min` int NOT NULL,
   `durasi_max` int NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 
 -- --------------------------------------------------------
 
@@ -422,7 +422,7 @@ CREATE TABLE `tukang_account` (
   `password` varchar(50) NOT NULL,
   `aktif` enum('1','0') DEFAULT '0',
   `email` varchar(100) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 
 -- --------------------------------------------------------
 
@@ -437,7 +437,7 @@ CREATE TABLE `tukang_detail` (
   `alamat_tukang` varchar(255) NOT NULL,
   `foto_ktp` varchar(255) NOT NULL,
   `foto_wajah` varchar(255) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 
 -- --------------------------------------------------------
 
@@ -450,7 +450,7 @@ CREATE TABLE `tukang_keahlian` (
   `id_keahlian` varchar(6) NOT NULL,
   `no_sertif` varchar(100) NOT NULL,
   `foto_sertif` varchar(255) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 
 -- --------------------------------------------------------
 
@@ -465,7 +465,7 @@ CREATE TABLE `tukang_log` (
   `aktivitas` varchar(255) DEFAULT NULL,
   `keterangan` varchar(255) DEFAULT NULL,
   `tanggal` datetime(6) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 
 -- --------------------------------------------------------
 
@@ -478,7 +478,7 @@ CREATE TABLE `tukang_riwayat` (
   `jml_uang` int NOT NULL,
   `keterangan` enum('1','2') NOT NULL,
   `tanggal` date NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 
 -- --------------------------------------------------------
 
@@ -489,7 +489,7 @@ CREATE TABLE `tukang_riwayat` (
 CREATE TABLE `tukang_saldo` (
   `id_tukang` varchar(8) NOT NULL,
   `saldo` int DEFAULT '0'
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 
 -- --------------------------------------------------------
 
@@ -502,7 +502,7 @@ CREATE TABLE `user_account` (
   `email` varchar(255) NOT NULL,
   `password` varchar(50) NOT NULL,
   `status` enum('0','1') DEFAULT '0'
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 
 -- --------------------------------------------------------
 
@@ -517,7 +517,7 @@ CREATE TABLE `user_detail` (
   `no_hp` varchar(17) DEFAULT NULL,
   `id_lokasi_kecamatan` varchar(2) DEFAULT NULL,
   `foto` varchar(255) DEFAULT 'no_image.jpg'
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 
 -- --------------------------------------------------------
 
@@ -531,7 +531,7 @@ CREATE TABLE `vendor` (
   `nama_vendor` varchar(255) DEFAULT NULL,
   `alamat_vendor` varchar(255) DEFAULT NULL,
   `no_hp` varchar(17) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 
 --
 -- Indexes for dumped tables

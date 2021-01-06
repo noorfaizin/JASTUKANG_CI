@@ -16,6 +16,7 @@
   margin: 10px;
 }
 
+/* ---------------- KOLOM 4 BARIS ----------------*/
 .col-list-4 {
   float: left;
   padding: 0 10px;
@@ -31,16 +32,17 @@
   background: transparent;
   margin: 10px;
 }
+
 @media (max-width: 1000px) {
   .col-list-4 {
     float: left;
     padding: 0 10px;
-    width: 33%;
+    width: 50%;
   }
-  .col-list-4:nth-child(3n) {
+  .col-list-4:nth-child(2n) {
     clear:right;
   }
-  .col-list-4:nth-child(3n+1) {
+  .col-list-4:nth-child(2n+1) {
     clear:left;
   }
   .recent-car-list {
@@ -77,6 +79,17 @@
   }
   .desc-jasa{
     margin-top: 25px;
+  }
+
+  .urutkan-produk{
+    margin: 0 20px;
+  }
+  .filter-produk{
+    margin: 0 20px;
+    margin-bottom: 20px;
+  }
+  .produk{
+    margin: 0 15px;
   }
 }
 
