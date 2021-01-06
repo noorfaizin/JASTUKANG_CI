@@ -5,7 +5,10 @@
     <h6 class="m-0 text-dark">Detail Jasa</h6>
 </div>
 <div class="row col-md-10 mx-auto bg-white p-3 mt-3 rounded">
+<<<<<<< HEAD
   <?php foreach ($jasa as $row): ?>
+=======
+>>>>>>> 05607640c44faebf748d2c9ca903137e3892f597
     <div class="col-md-5">
         <div id="carouselExampleIndicators" class="carousel slide mb-5" data-ride="carousel">
             <ol class="carousel-indicators-image">
@@ -32,6 +35,7 @@
             </div>
         </div>
     </div>
+<<<<<<< HEAD
 
     <div class="col-md-7">
         <h5 class="badge badge-warning mt-4"><?php echo $row->kat .' ' . $row->sub; ?></h5>
@@ -55,11 +59,26 @@
             <input type="file" multiple name="image_name[]" class="custom-file-input" id="gallery-photo-add" required>
             <label class="custom-file-label" for="validatedCustomFile">Sematkan foto</label>
             <div class="gallery" ></div>
+=======
+    
+    <div class="col-md-7">
+        <h5 class="badge badge-warning mt-4">Kategori Jasa</h5>
+        <h4 class="font-weight-bold text-dark">Title Jasa</h4>
+        <hr>
+        <div class="form-group">
+            <input type="text" class="form-control" id="uraian-jasa" name="uraian-jasa" placeholder="/meter">
+        </div>
+        <div class="custom-file mb-3">
+            <input type="file" class="custom-file-input" id="validatedCustomFile" required>
+            <label class="custom-file-label" for="validatedCustomFile">Sematkan foto</label>
+            <div class="invalid-feedback">Example invalid custom file feedback</div>
+>>>>>>> 05607640c44faebf748d2c9ca903137e3892f597
         </div>
         <div class="form-group">
             <textarea type="text" class="form-control" placeholder="Deskripsi pemesanan..." name="desc-pemesanan"></textarea>
         </div>
         <hr>
+<<<<<<< HEAD
 
         <small class="font-weight-light font-italic">Kecamatan :</small>
         <div class="form-group">
@@ -68,18 +87,39 @@
             <?php foreach ($kecamatan as $kec): ?>
               <option value="<?php echo $kec->id_lokasi; ?>"><?php echo $kec->kecamatan; ?></option>
             <?php endforeach; ?>
+=======
+        
+        <small class="font-weight-light font-italic">Kecamatan :</small>
+        <div class="form-group">
+          <select class="form-control" id="exampleFormControlSelect1">
+            <option>- Kecamatan -</option>
+            <option>Kecamatan 1</option>
+            <option>Kecamatan 2</option>
+            <option>Kecamatan 3</option>
+            <option>Kecamatan 4</option>
+>>>>>>> 05607640c44faebf748d2c9ca903137e3892f597
           </select>
         </div>
         <small class="font-weight-light font-italic">Kelurahan :</small>
         <div class="form-group">
+<<<<<<< HEAD
           <select id="kel" name="kel" class="form-control">
             <option>- Kelurahan -</option>
+=======
+          <select class="form-control" id="exampleFormControlSelect1">
+            <option>- Kelurahan -</option>
+            <option>Kelurahan 1</option>
+            <option>Kelurahan 2</option>
+            <option>Kelurahan 3</option>
+            <option>Kelurahan 4</option>
+>>>>>>> 05607640c44faebf748d2c9ca903137e3892f597
           </select>
         </div>
         <div class="form-group">
             <textarea type="text" class="form-control" placeholder="Deskripsi alamat..." name="desc-alamat"></textarea>
         </div>
         <a href="#" class=" btn text-dark btn-md btn-warning shadow-sm mb-3">Lanjutkan</a>
+<<<<<<< HEAD
 
     </div>
 
@@ -90,6 +130,18 @@
             <medium class="font-italic text-gray">
                 <?php echo $row->deskripsi; ?>
             </medium>
+=======
+        
+    </div>
+
+
+    
+    <div class="col-md-12 mt-3 mb-3">
+        <span class="font-weight-bold font-italic text-gray">"</span>
+            <small class="font-italic text-gray">
+                Deskripsi Jasa
+            </small>
+>>>>>>> 05607640c44faebf748d2c9ca903137e3892f597
         <span class="font-weight-bold font-italic text-gray">"</span>
         <hr>
         <div class="row">
@@ -100,6 +152,7 @@
                 <div class="row col-md-12">
                     <div class="col-md-3 col-sm-3">
                         <h5 class="badge badge-success font-weight-light">Borongan</h5>
+<<<<<<< HEAD
                         <h6>Rp. <?php echo number_format($row->harga_borongan); ?> ,-</h6>
                     </div>
                     <div class="col-md-3 col-sm-3">
@@ -109,6 +162,18 @@
                     <div class="col-md-12">
                         <small class="font-italic text-gray">
                             <li>Harga belum termasuk bahan bangunan.</li>
+=======
+                        <h6>Rp. 20000 ,-</h6>
+                    </div>
+                    <div class="col-md-3 col-sm-3">
+                        <h5 class="badge badge-success font-weight-light">Harian</h5>
+                        <h6>Rp. 100000 ,-</h6>
+                    </div>
+                    <div class="col-md-12">
+                        <small class="font-italic text-gray">
+                            <li>Harga borongan adalah harga per meter, dari jasa yang dipilih.</li>
+                            <li>Harga harian adalah harga per hari, dari jasa yang dipilih.</li>
+>>>>>>> 05607640c44faebf748d2c9ca903137e3892f597
                         </small>
                     </div>
                 </div>
@@ -130,8 +195,11 @@
             </div>
         </div>
     </div>
+<<<<<<< HEAD
   <?php endforeach; ?>
 
+=======
+>>>>>>> 05607640c44faebf748d2c9ca903137e3892f597
 </div>
 
 <!-- Jasa Terkait -->
@@ -163,4 +231,8 @@
                 <i class="fas fa-phone text-dark-50"></i> Hubungi Kami</a>
         </div>
     </div>
+<<<<<<< HEAD
 </div>
+=======
+</div>
+>>>>>>> 05607640c44faebf748d2c9ca903137e3892f597

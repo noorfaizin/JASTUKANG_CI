@@ -4,10 +4,17 @@
             <div class="col-md-3">
                 <a href="<?= base_url()?>">
                     <img class="logo-footer" src="<?php echo base_url('assets/images/logo-footer.png') ?>">
+<<<<<<< HEAD
                 </a>
                 <a href="<?= base_url()?>">
                     <img class="logo-footer-responsive" src="<?php echo base_url('assets/images/nav-logo.png') ?>">
                 </a>
+=======
+                </a>    
+                <a href="<?= base_url()?>">
+                    <img class="logo-footer-responsive" src="<?php echo base_url('assets/images/nav-logo.png') ?>">
+                </a>    
+>>>>>>> 05607640c44faebf748d2c9ca903137e3892f597
             </div>
             <div class="col-md-3">
                 <div class="text-dark title-footer">Album / Inspirasi</div>
@@ -30,7 +37,11 @@
             <div class="follow-us mx-auto text-dark">Follow Us</div>
             <div class="group-sosmed d-block">
                 <img class="sosmed-footer" src="<?php echo base_url('assets/images/sosmed/g+.png') ?>">
+<<<<<<< HEAD
                 <img class="sosmed-footer" src="<?php echo base_url('assets/images/sosmed/Fb.png') ?>">
+=======
+                <img class="sosmed-footer" src="<?php echo base_url('assets/images/sosmed/FB.png') ?>">
+>>>>>>> 05607640c44faebf748d2c9ca903137e3892f597
                 <img class="sosmed-footer" src="<?php echo base_url('assets/images/sosmed/Instagram.png') ?>">
             </div>
         </div>
@@ -46,13 +57,21 @@
     <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js'></script>
     <script src='https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js'></script>
     <script  src="<?= base_url('assets/js/navbar_frontend.js') ?>"></script>
+<<<<<<< HEAD
     <script  src="<?= base_url('assets/js/jquery/jquery.js') ?>"></script>
+=======
+    <script  src="<?= base_url('assets/js/jquery/jquery.min.js') ?>"></script>
+>>>>>>> 05607640c44faebf748d2c9ca903137e3892f597
     <!-- search -->
     <script  src="<?= base_url('assets/js/search.js') ?>"></script>
     <!-- scroll smooth -->
     <!-- <script  src="assets/js/ScrollSmooth.js"></script> -->
 
+<<<<<<< HEAD
     <!--- BACK TO TOP ------->
+=======
+    <!------- BACK TO TOP ------->
+>>>>>>> 05607640c44faebf748d2c9ca903137e3892f597
     <script type="text/javascript">
     $(document).ready(function(){
         $(window).scroll(function(){
@@ -66,6 +85,7 @@
             $("html, body").animate({ scrollTop: 0 }, 600);
             return false;
         });
+<<<<<<< HEAD
 
         // Select Kategori
 
@@ -126,4 +146,18 @@
     });
     </script>
     <!--- SUB Kategori -->
+=======
+    });
+    </script>
+    <script>
+        window.onscroll = function() {scrollFunction()};
+        function scrollFunction() {
+            if (document.body.scrollTop > 1 || document.documentElement.scrollTop > 1) {
+                document.getElementById("search").style.top = "8px";
+            } else {
+                document.getElementById("search").style.top = "20px";
+            }
+        }
+    </script>
+>>>>>>> 05607640c44faebf748d2c9ca903137e3892f597
 </html>
