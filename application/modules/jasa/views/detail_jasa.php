@@ -47,10 +47,13 @@
               <input type="text" class="form-control" id="uraian-jasa" name="titik" placeholder="Titik">
             <?php }else if ($row->satuan == 2){ ?>
               <input type="text" class="form-control" id="uraian-jasa" name="panjang" placeholder="Panjang">
+              <br>
               <input type="text" class="form-control" id="uraian-jasa" name="lebar" placeholder="Lebar">
             <?php }else if($row->satuan == 3){ ?>
               <input type="text" class="form-control" id="uraian-jasa" name="panjang" placeholder="Panjang">
+              <br>
               <input type="text" class="form-control" id="uraian-jasa" name="lebar" placeholder="Lebar">
+              <br>
               <input type="text" class="form-control" id="uraian-jasa" name="tinggi" placeholder="Tinggi">
             <?php } ?>
           </div>

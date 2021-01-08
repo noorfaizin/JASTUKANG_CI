@@ -32,7 +32,7 @@ class Jasa extends CI_Controller {
        }
 
         public function index($kat='',$subKat='') {
-          $data['judul'] = "Jasa Tukang";
+          $data['judul'] = "Jasa";
           $sub = $this->input->post('subKat');
           $kat = $kat;
           $sub1 = $subKat;
@@ -50,7 +50,7 @@ class Jasa extends CI_Controller {
           $data['kategori'] = $this->m_jasa->getKatSub('jasa_kategori');
           //$this->load->view('template_frontend/header',$data);
           //$this->load->view('template_frontend/navbar',$data);
-          $this->template->header();
+          $this->template->header($data['judul']);
           $this->template->navbar();
           $this->load->view('jasa', $data);
           $this->template->footer();
@@ -63,7 +63,7 @@ class Jasa extends CI_Controller {
           $data['kecamatan'] = $this->m_jasa->getKecamatan()->result();
           $data['gambar'] = $this->m_jasa->getGambarJasa($id)->result();
           //die(print_r($data));
-          $this->template->header();
+          $this->template->header($data['judul']);
           $this->template->navbar();
           $this->load->view('detail_jasa', $data);
           $this->template->footer();
@@ -81,7 +81,7 @@ class Jasa extends CI_Controller {
           $data['kategori'] = $this->m_jasa->getKatSub('jasa_kategori');
           // $this->load->view('template_frontend/header', $data);
           // $this->load->view('template_frontend/navbar', $data);
-          $this->template->header();
+          $this->template->header($data['judul']);
           $this->template->navbar();
           $this->load->view('daftar_jasa', $data);
           //$this->load->view('template_frontend/footer', $data);

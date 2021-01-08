@@ -6,9 +6,9 @@
   class Template extends CI_Model
   {
 
-    public function Header()
+    public function Header($judul)
     {
-      $data['judul'] = "JasTukang - Make Your Home Be Better";
+      $data['judul'] = $judul;
       return $this->load->view('template_frontend/header',$data);
     }
 

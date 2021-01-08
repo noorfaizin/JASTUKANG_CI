@@ -13,7 +13,7 @@
 
 <!-- Nav Item - Dashboard -->
 <li class="nav-item">
-  <a class="nav-link" href="<?= base_url()?>">
+  <a class="nav-link" href="<?= base_url('tukang')?>">
 	<span>Home</span></a>
 </li>
 <li class="nav-item">

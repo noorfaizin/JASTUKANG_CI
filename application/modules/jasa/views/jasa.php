@@ -92,6 +92,7 @@
   <div class="col-md-4">
     <div class="accordion desc-jasa" id="accordionExample">
       <h4 class="m-0 text-dark">Kategori</h4>
+      <hr>
       <?php foreach ($kategori as $row): ?>
         <div class="card">
           <div class="bg-warning p-1 card-header" id="">

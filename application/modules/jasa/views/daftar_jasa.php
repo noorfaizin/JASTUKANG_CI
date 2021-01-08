@@ -11,7 +11,7 @@
       <div class="col-list-3 p-0" style="border-radius:15px">
         <div id="myProduct" class="recent-car-list">
           <div class="col-lg text-dark justify-content-center p-0">
-            <a href="<?= base_url('jasa/renovasi') ?>">
+            <a href="<?= base_url('jasa/') . $row['id_kategori_jasa'] ?>">
               <div class="card m-0 shadow" style="border-radius:15px">
                 <div  class="card-header text-center m-0">
                   <img src="<?= base_url('assets/images/icon.png') ?>" class="card-img-top rounded" alt="image">

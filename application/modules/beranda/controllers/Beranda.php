@@ -12,9 +12,10 @@ class Beranda extends CI_Controller {
 	}
 
 	public function index() {
+				$data['judul'] = "JasTukang - Make Your Home Be Better";
 				$data['kategori'] = $this->m_beranda->getKat('jasa_kategori')->result();
         //$this->load->view('template_frontend/header', $data);
-				$this->template->header();
+				$this->template->header($data['judul']);
 				$this->template->navbar();
 				//$this->load->view('template_frontend/navbar', $data);
         $this->load->view('beranda', $data);

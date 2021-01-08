@@ -9,17 +9,18 @@
 				<i class="fa fa-user" aria-hidden="true"></i>
 				<span class=" font-weight-bold">Rincian Data Diri</span>
 			</a>
+			<?php echo $this->session->flashdata('msg'); ?>
 			<div id="Toggle-1" class="collapse show multi-collapse">
 				<div class="card-body widget-content">
 					<div class="form-group col-md-6">
 						<small class="font-italic text-warning">Nama Lengkap</small>
-						<input type="text" class="form-control" id="nama-user" placeholder="Nama Lengkap">
+						<input type="text" class="form-control" id="nama-user" placeholder="<?php echo $this->session->userdata('nama_tukang') ?>" disabled>
 					</div>
 					<div class="form-group col-md-6">
 						<small class="font-italic text-warning">Nomor HP</small>
-						<input type="text" class="form-control" id="nohpu-ser" placeholder="08xx xxxx xxxx">
+						<input type="text" class="form-control" id="nohpu-ser" placeholder="<?php echo substr($this->session->userdata('no_hp'),0,3) ?>x-xxxx-<?php echo substr($this->session->userdata('no_hp'),-4) ?>" disabled>
 					</div>
-					<a href="#" class="btn btn-md btn-dark">Update</a>
+					<!-- <a href="#" class="btn btn-md btn-dark">Update</a> -->
 				</div>
 			</div>
 		</div>
@@ -35,10 +36,8 @@
 			<div id="Toggle-2" class="multi-collapse collapse" style="">
 				<div class="card-body widget-content">
 					<div class="form-group col-md-6">
-						<small class="font-italic text-danger">Belum terverifikasi</small>
-						<input type="email" class="form-control" id="email-user" placeholder="User@mail.com">
+						<input type="email" class="form-control" id="email-user" value="<?php echo $this->session->userdata('email') ?>" disabled>
 					</div>
-					<a href="#" class="btn btn-md btn-dark">Verifikasi Email</a>
 				</div>
 			</div>
 		</div>
@@ -53,16 +52,22 @@
 			</a>
 			<div id="Toggle-3" class="collapse multi-collapse">
 				<div class="card-body widget-content">
-					<div class="form-group col-md-6">
-						<small class="font-italic text-warning">Password lama</small>
-						<input type="password" class="form-control" id="pw-user" placeholder="Old Password">
-					</div>
-					<div class="form-group col-md-6">
-						<small class="font-italic text-warning">Password baru</small>
-						<input type="password" class="form-control" id="retypepw-ser" placeholder="Retype Password">
-					</div>
-					<a href="#" class="btn btn-md btn-outline-danger">Batal</a>
-					<a href="#" class="btn btn-md btn-dark">Update</a>
+					<form class="form-group" action="tukang/changepassword" method="post">
+						<?php echo form_open() ?>
+						<div class="form-group col-md-6">
+							<small class="font-italic text-warning">Password lama</small>
+							<input type="password" name="old_password" class="form-control" id="pw-user" placeholder="Old Password" value="<?php echo set_value('old_password') ?>">
+							<small class="font-italic text-danger"> <?php echo form_error('old_password'); ?> </small>
+						</div>
+						<div class="form-group col-md-6">
+							<small class="font-italic text-warning">Password baru</small>
+							<input type="password" name="new_password" class="form-control" id="retypepw-ser" placeholder="Retype Password" value="<?php echo set_value('new_password') ?>">
+							<small class="font-italic text-danger"> <?php echo form_error('new_password'); ?> </small>
+						</div>
+						<button type="reset" class="btn btn-md btn-outline-danger">Batal</button>
+						<button type="submit" class="btn btn-md btn-dark">Update</button>
+						<?php echo form_close() ?>
+					</form>
 				</div>
 			</div>
 		</div>
