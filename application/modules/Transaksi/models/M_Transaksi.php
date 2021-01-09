@@ -17,6 +17,39 @@ class M_Transaksi extends CI_Model{
     return $this->db->get()->result();
   }
 
+  public function getProduk($id_transaksi)
+  {
+      $this->db->where('mtd.id_tr_material', $id_transaksi);
+      $this->db->from('material_transaksi_detail mtd');
+      $this->db->join('material_gambar mg', 'mtd.id_material = mg.id_material');
+      $this->db->join('material m', 'mtd.id_material = m.id_material');
+      $this->db->group_by('m.id_material');
+      $this->db->order_by('m.id_material');
+      return $this->db->get()->result();
+  }
+
+  public function getUlasan($id_transaksi, $id_material)
+  {
+      $this->db->where('mu.id_transaksi_material', $id_transaksi);
+      $this->db->where('mu.id_material', $id_material);
+      $this->db->from('material_ulasan mu');
+      $this->db->order_by('mu.id_material');
+      return $this->db->get()->result();
+  }
+
+  public function saveUlasan($id_transaksi, $id_material)
+  {
+    $data = [
+      'id_material' => $id_material,
+      'id_transaksi_material' => $id_transaksi,
+      'id_user' => $this->session->userdata('id_user'),
+      'nilai' => $this->input->post('nilai'),
+      'keterangan' => $this->input->post('ulasan')
+    ];
+    $this->db->insert('material_ulasan', $data);
+    redirect('transaksi/ulasanProduk/' . $id_transaksi);
+  }
+
   public function addSaldo($transaksi, $id_transaksi)
   {
     if ($transaksi == 1) {

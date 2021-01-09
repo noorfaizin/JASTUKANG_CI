@@ -54,8 +54,44 @@
       $this->load->view('Dashboard/Template_backend/footer');
     }
 
+    public function ulasanProduk($id_transaksi)
+    {
+      $data['judul'] = "Ubah Transaksi";
+      $transaksi['id_transaksi'] = $id_transaksi;
+      $this->session->set_flashdata('edit', "<script type='text/javascript'>get_data_ulasan('". $id_transaksi ."');</script>");
+      $this->load->view('Dashboard/Template_backend/header', $data);
+      $this->load->view('Dashboard/Template_backend/sidebar');
+      $this->load->view('Dashboard/Template_backend/topbar');
+      $this->load->view('ulasan_produk', $transaksi);
+      $this->load->view('Dashboard/Template_backend/footer');
+    }
 
+    public function get_data_produk_transaksi($id_transaksi)
+    {
+      $data = $this->M_Transaksi->getProduk($id_transaksi);
+      echo json_encode($data);
+    }
 
+    public function saveUlasan($id_transaksi, $id_material)
+    {
+      $this->form_validation->set_rules('nilai', 'Nilai ', 'trim|required', 
+        array('required' => '%s harus diisi'));
+      $this->form_validation->set_rules('ulasan', 'Ulasan ', 'trim|required', 
+        array('required' => '%s harus diisi'));
+    
+      if ($this->form_validation->run() == false) {
+        $this->session->set_flashdata('sukses','Data tidak dapat diubah');
+        redirect('transaksi/ulasanProduk/' . $id_transaksi);
+      } else {
+        $this->M_Transaksi->saveUlasan($id_transaksi, $id_material);
+      }
+    }
+
+    public function get_data_ulasan($id_transaksi, $id_material)
+    {
+      $data = $this->M_Transaksi->getUlasan($id_transaksi, $id_material);
+      echo json_encode($data);
+    }
 
     public function konfirmasiSudahTerkirim($id_transaksi, $pesan)
     {

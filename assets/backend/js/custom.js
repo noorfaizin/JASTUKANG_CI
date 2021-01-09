@@ -136,6 +136,66 @@ function get_data_edit(){
     });
 }
 
+function ulasan(id_material, pesan){
+    if(pesan==1){
+        $('.modal-title').text('Berikan Ulasan');
+        id_transaksi = $('#noTransaksi').text();
+        $("#saveUlasan").trigger("reset");
+        $('#lihat_ulasan').hide();
+        $('#berikan_ulasan').show();
+        $('#saveUlasan').attr('action', base_url + 'transaksi/saveUlasan/' + id_transaksi + '/' + id_material);
+        $('#modalUlasan').modal('show');
+    } else if(pesan==2){
+        $('#berikan_ulasan').hide();
+        $('#lihat_ulasan').show();
+        $('#modalUlasan').modal('show');
+    };
+
+    // $.ajax({
+    //     url : base_url + "transaksi/get_data_ulasan/" + id_transaksi,
+    //     method : "POST",
+    //     async : true,
+    //     dataType : 'json',
+    //     success : function(dataUlasan){
+    //         $.each(dataUlasan, function(key, item){
+    //             $('#tabel_daftar').append(tabel);
+    //         });
+    //     }
+    // });
+}
+
+function get_data_ulasan(id_transaksi){
+    $.ajax({
+        url : base_url + "transaksi/get_data_produk_transaksi/" + id_transaksi,
+        method : "POST",
+        async : true,
+        dataType : 'json',
+        success : function(data){
+            $.each(data, function(i, value){
+                var tabel = ''; 
+                var tombol = '';
+                $.ajax({
+                    url : base_url + "transaksi/get_data_ulasan/" + id_transaksi + "/" + value.id_material,
+                    method : "POST",
+                    async : true,
+                    dataType : 'json',
+                    success : function(dataUlasan){
+                        var aksi = '';
+                        $.each(dataUlasan, function(key, item){
+                                aksi += '<td class="text-center"><a href="javascript:void(0);" type="button" class="btn btn-success" onclick="ulasan('+ value.id_material +', 2);">Lihat Ulasan</a></td>';
+                        });
+                        if(!aksi){
+                            aksi += '<td class="text-center"><a href="javascript:void(0);" type="button" class="btn btn-success" onclick="ulasan('+ value.id_material +', 1);">Berikan Ulasan</a></td>';
+                        }
+                        tabel += '<tr><td class="text-center"><img alt="" width="100px" id="gambar_produk" src="' + base_url + 'assets/images/material/' + value.path + ' "></td><td>' + value.nama_material + '</td><td>' + value.harga_material + '</td><td>' + value.keterangan_satuan + ' ' + value.satuan + '</td>' + aksi + '</tr>';
+                        $('#tabel_daftar').append(tabel);
+                    }
+                });
+            });
+        }
+    });
+}
+
 function showModalVerifP($id){
     $('.modal-title').text('Verifikasi Pembayaran');
     $.ajax({

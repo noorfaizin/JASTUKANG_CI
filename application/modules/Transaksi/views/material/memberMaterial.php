@@ -39,7 +39,9 @@
                           } else if ($p->status == 4) {
                             echo "Konfirmasi Penerimaan";
                           } else if ($p->status == 5) {
-                            echo "Selesai";
+                            echo "Selesai | Menunggu ulasan";
+                          } else if ($p->status == 6) {
+                            echo "Selesai | Telah diberi ulasan";
                           }
                         ?>
                       </td>
@@ -47,18 +49,17 @@
                       <td><?= $p->nama_rekening; echo " " .$p->no_rekening; ?></td>
                       <td>
                         <div class="btn-group d-flex justify-content-center">                           
+                          <a href="javascript:void(0);" type="button" class="btn btn-info" onclick="hubungiVendor('<?= $p->id_tr_material ?>', 2);">Detail Pesanan</a>
                           <?php  if ($p->status == 0) { ?>
                             <a href="javascript:void(0);" type="button" class="btn btn-success" onclick="showModalBukti('<?= $p->id_tr_material ?>');">Verifikasi Pembayaran</a>
-                            <a href="javascript:void(0);" type="button" class="btn btn-info" onclick="hubungiVendor('<?= $p->id_tr_material ?>', 2);">Detail Pesanan</a>
-                          <?php } else if ($p->status == '1') { ?>
-                            <a href="javascript:void(0);" type="button" class="btn btn-info" onclick="hubungiVendor('<?= $p->id_tr_material ?>', 2);">Detail Pesanan</a>
+                          <?php } else if ($p->status == 1) { ?>
                           <?php } else if ($p->status == 2) { ?>
-                            <a href="javascript:void(0);" type="button" class="btn btn-info" onclick="hubungiVendor('<?= $p->id_tr_material ?>', 2);">Detail Pesanan</a>
                           <?php } else if ($p->status == 3 || $p->status == 4) { ?>
-                            <a href="javascript:void(0);" type="button" class="btn btn-info" onclick="hubungiVendor('<?= $p->id_tr_material ?>', 2);">Detail Pesanan</a>
                             <a href="javascript:void(0);" type="button" class="btn btn-success" onclick="konfirmasiPengiriman('<?= $p->id_tr_material ?>', 3);">Konfirmasi Penerimaan</a>
                           <?php } else if ($p->status == 5) { ?>
-                            <a href="javascript:void(0);" type="button" class="btn btn-info" onclick="hubungiVendor('<?= $p->id_tr_material ?>', 2);">Detail Pesanan</a>
+                            <a href="<?= base_url('transaksi/ulasanProduk/'. $p->id_tr_material) ?>" type="button" class="btn btn-success">Berikan Ulasan</a>
+                          <?php } else if ($p->status == 6) { ?>
+                            <a href="<?= base_url('transaksi/ulasanProduk/'. $p->id_tr_material) ?>" type="button" class="btn btn-success">Lihat Ulasan</a>
                           <?php } ?>
                         </div>
                       </td>
